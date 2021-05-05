@@ -173,10 +173,4 @@ void MyScene::setFillColour(QColor colourFill){
     myBrush.setColor(colourFill);
 }
 
-void MyScene::saveOption(){
-
-
-
-}
-
 

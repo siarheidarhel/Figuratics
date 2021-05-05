@@ -65,7 +65,7 @@ public:
 
         void setFillColour(QColor colourFill);
 
-        void saveOption();
+      // void myDragEvent();
 
         void clearScene();
 

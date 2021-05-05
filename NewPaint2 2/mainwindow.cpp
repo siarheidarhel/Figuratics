@@ -156,24 +156,38 @@ void MainWindow::on_fillColourButton_clicked()
 
 void MainWindow::on_saveButton_clicked()
 {
-//    QString newPath = QFileDialog::getSaveFileName(this,"Save file As");
-//    QPixmap myPixmap=ui->graphicsView->grab(scene->sceneRect().toRect());
-//    QFile myFile();
-//    myFile.write(myPixmap);
+    QString newPath = QFileDialog::getSaveFileName(this,"Save file As");
 
+   QPixmap pixmap(800,800);
+   QPainter painter(&pixmap);
 
+    pixmap.fill(Qt::white);
+    painter.setRenderHint(QPainter::Antialiasing);
+    scene->render(&painter);
 
-
-     QPixmap pixmap;
-     QPainter painter(&pixmap);
-
-     painter.setRenderHint(QPainter::Antialiasing);
-     scene->render(&painter);
      painter.end();
 
-     pixmap.save("MyFile.png");
+    pixmap.save(newPath);
+
+
+
+}
 
 
 
 
+
+
+void MainWindow::on_openButton_clicked()
+{
+
+    QPixmap pixmapNewFile;
+    pixmapNewFile.load(QFileDialog::getOpenFileName(this));
+    scene->addPixmap(pixmapNewFile);
+
+}
+
+void MainWindow::mousePressEvent(QMouseEvent *event)
+{
+    event->ignore();
 }

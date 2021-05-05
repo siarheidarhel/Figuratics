@@ -49,6 +49,13 @@ private slots:
     void on_fillColourButton_clicked();
 
     void on_saveButton_clicked();
+    void on_openButton_clicked();
+
+
+
+
+protected:
+    void mousePressEvent(QMouseEvent *event);
 };
 
 #endif // MAINWINDOW_H
