@@ -8,6 +8,7 @@
 #include<QGraphicsScene>
 #include<QPicture>
 #include <QGraphicsLineItem>
+#include <QString>
 
 
 
@@ -20,11 +21,12 @@ class MyScene;
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
-
-
+QGraphicsTextItem *myTextItem= new QGraphicsTextItem(inputText);
+    QString windowTitle ={"Simple Painter"};
+    QString inputText;
 
 public:
-    explicit MainWindow(QWidget *parent = 0);
+    explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
 private:
@@ -54,8 +56,16 @@ private slots:
 
 
 
+    void on_textButton_clicked();
+
+
+
+    void on_spinBox_2_valueChanged(int rotate);
+
+    void on_editText_clicked();
+
 protected:
-    void mousePressEvent(QMouseEvent *event);
+
 };
 
 #endif // MAINWINDOW_H

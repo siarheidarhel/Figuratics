@@ -15,5 +15,8 @@
         <file>remove.png</file>
         <file>triangle.png</file>
         <file>undo.png</file>
+        <file>rectangle.png</file>
+        <file>line copy.png</file>
+        <file>pencil copy.png</file>
     </qresource>
 </RCC>
