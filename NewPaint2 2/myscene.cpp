@@ -16,17 +16,18 @@
 #include <QDebug>
 #include <QSizeF>
 
-MyScene::MyScene(QObject *parent):QGraphicsScene(parent)
+
+
+MyScene::MyScene(QObject *parent): QGraphicsScene(parent)
 {
 
-
-
+myText=nullptr;
 
 }
 
 MyScene::~MyScene()
 {
-    //delete myTextItem;
+
 
 }
 
@@ -40,71 +41,119 @@ void MyScene::setFigureType(int figureType)
 
 void MyScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
-    if(event==nullptr) return;
 
+    if (event->buttons() & !Qt::LeftButton){ return;}
+    else {start_point=event->scenePos();
 
-    start_point=event->scenePos();
+    switch (figureType_) {
 
+   //case Line| Circle| Rectangle | Triangle| Pencil | Points: break;;qDebug("mouse press") ;
+    case Text:
+        myText=new MyTextClass();
+        myText->setTextInteractionFlags(Qt::TextEditorInteraction);
 
+        connect(myText, &MyTextClass::lostFocus, this, &MyScene::editorLostFocus);
+
+        connect(myText, &MyTextClass::selectedChange,this, &MyScene::itemSelected);
+
+        addItem(myText);
+        myText->setPos(event->scenePos());
+        update();
+        break;
+
+    case MoveItem:
+        if(saveContainer_.isEmpty()){return;}
+
+             figure=saveContainer_.last();
+        figure->setFocus((Qt::MouseFocusReason));
+        //QGraphicsTextItem *item = qgraphicsitem_cast<MyTextClass *>(selectedItems().first());
+        //item->setPos(event->scenePos());
+        figure->setCursor(Qt::ClosedHandCursor);
+        break;
+    }
+}
+QGraphicsScene::mousePressEvent(event);
+//start_point.manhattanLength();
 
 
 }
+
+
+
 
 void MyScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
-         Q_UNUSED(event)
+    Q_UNUSED(event)
+
         if(!figure)return;
-        saveContainer_.push_back(figure);
+        saveContainer_.push_back(figure);qDebug("saveContainer");
+        figure->setCursor(Qt::ArrowCursor);
 
-        figure=nullptr;
+    figure=nullptr;
 
+QGraphicsScene::mouseReleaseEvent(event);
 
 }
+
+
+
+
 
 
 
 
 void MyScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
-   if(event==nullptr) return;
+    if(event==nullptr) return;
+ if (event->buttons() & Qt::LeftButton){
 
-end_point =event->scenePos();
+   qDebug()<<Q_FUNC_INFO;
 
+//    end_point =event->scenePos();
 
+  switch (figureType_) {
 
+ //end_point =event->scenePos();
+   case Line:end_point =event->scenePos();drawLine();break;
+   case Rectangle:end_point =event->scenePos();drawRect();break;
+   case Triangle:end_point =event->scenePos();drawTriangle();break;
+   case Pencil:end_point =event->scenePos();drawPencile();break;
+   case Circle: end_point =event->scenePos(); drawCircle();   break;
+   case Points:end_point =event->scenePos();drawPoints();  break;
+   case Text: break;
+   case MoveItem:
+                   if(saveContainer_.isEmpty()){
+                       QWidget *my = nullptr;
+                       QMessageBox::information (my,("Information"), tr("No OBJECT to move"),  QMessageBox::Ok);
 
-  if(figureType_ == Line) drawLine();
+                       delete my;
+                       return; }
 
-  if(figureType_==Rectangle) drawRect();
+                   else  {
+                       //figure->setFocus((Qt::MouseFocusReason));
 
- if(figureType_==Triangle) drawTriangle();
+                       //figure->setCursor(Qt::ClosedHandCursor);
+                       QRectF bbox = figure->boundingRect().normalized();
+                         QPointF center = bbox.center();
+                         figure->setTransformOriginPoint(center);
 
- if(figureType_== Pencil) drawPencile();
-
- if(figureType_==Circle) drawCircle();
-
- if(figureType_==Points) drawPoints();
-
-
-
-
-
+                        figure->setPos(event->scenePos()-bbox.center());
+                      // saveContainer_.last()->setPos(event->scenePos());
+                   }
+  }
+}
 
 }
 
 
+
 void MyScene::drawLine()
 {
-    if(figure)
-    {
-        delete figure;
-        figure =nullptr;
-    }
+    if(figure){removeItem(figure); figure =nullptr; }
 
-    //QPainterPath myPath;
-
-    figure = addLine(start_point.x(), start_point.y(),end_point.x(), end_point.y(),QPen(myPen));
-    update();
+            figure = addLine(start_point.x(), start_point.y(),end_point.x(), end_point.y(),QPen(myPen));
+            figure->setOpacity(myOpacity);
+            figure->setFlags(QGraphicsItem::ItemIsFocusable| QGraphicsItem::ItemIsMovable|QGraphicsItem::ItemIsSelectable );
 }
 
 
@@ -122,7 +171,8 @@ void MyScene::drawRect(){
 
     figure= addRect(rect,QPen(myPen),QBrush(myBrush));
     figure->setRotation(myRotate);
-
+    figure->setOpacity(myOpacity);
+    figure->setFlags(QGraphicsItem::ItemIsFocusable| QGraphicsItem::ItemIsMovable|QGraphicsItem::ItemIsSelectable );
 
 }
 
@@ -142,7 +192,8 @@ void MyScene::drawTriangle(){
 
       figure = addPolygon(triangle,QPen(myPen),QBrush(myBrush));
       figure->setRotation(myRotate);
-
+      figure->setOpacity(myOpacity);
+      figure->setFlags(QGraphicsItem::ItemIsFocusable| QGraphicsItem::ItemIsMovable|QGraphicsItem::ItemIsSelectable );
 
 
 }
@@ -150,42 +201,47 @@ void MyScene::drawTriangle(){
 
 
 void MyScene::clearScene(){
-    QGraphicsScene::clear();
+
     saveContainer_.clear();
-    textContainer.clear();
-    update();
+    //textContainer.clear();
+     update();
 }
 
-void MyScene::rotationFigure(int rotate)
-{
-    myRotate=rotate;
-}
 
 
 
 void MyScene::drawPencile(){
 
+//QGraphicsPathItem myPath;
 
     figure =  addLine (start_point.rx(), start_point.ry(),end_point.x(), end_point.y(),QPen(myPen));
     start_point=end_point;
+    figure->setOpacity(myOpacity);
+    figure->setFlags(QGraphicsItem::ItemIsFocusable| QGraphicsItem::ItemIsMovable|QGraphicsItem::ItemIsSelectable );
 
 }
 
 
 void MyScene::drawCircle(){
-    if(figure){delete figure;}
+    if(figure){removeItem(figure);}
 
     auto w=end_point.x()-start_point.x();
     auto h=end_point.y()-start_point.y();
 
     figure= addEllipse(start_point.x(), start_point.y(),w, h,QPen(myPen),QBrush(myBrush));
     figure->setRotation(myRotate);
+    figure->setOpacity(myOpacity);
+    figure->setFlags(QGraphicsItem::ItemIsFocusable| QGraphicsItem::ItemIsMovable|QGraphicsItem::ItemIsSelectable );
+
+
 }
 
 void MyScene::drawPoints(){
     if(figure){delete figure;}
 
     figure = addEllipse(end_point.x(),end_point.y(),4,4,QPen(Qt::black),QBrush("black"));
+    figure->setOpacity(myOpacity);
+    figure->setFlags(QGraphicsItem::ItemIsFocusable| QGraphicsItem::ItemIsMovable|QGraphicsItem::ItemIsSelectable );
 }
 
 
@@ -194,6 +250,7 @@ void MyScene::undoMethod(){
     if (figureType_!=Text){
 
           if( saveContainer_.isEmpty()){
+
           messBox.setIcon(QMessageBox::Information);
           messBox.setText(warnMessage);
           messBox.exec();
@@ -201,17 +258,17 @@ void MyScene::undoMethod(){
 
       this->removeItem(saveContainer_.pop());}
 
-    if(figureType_==Text){
+//    if(figureType_==Text){
 
-        if(textContainer.isEmpty()){
-            messBox.setIcon(QMessageBox::Information);
-            messBox.setText("NO Text!");
-            messBox.exec();
-             return;}
-            this->removeItem(textContainer.pop());}
+//        if(textContainer.isEmpty()){
+//            messBox.setIcon(QMessageBox::Information);
+//            messBox.setText(warnTextMessage);
+//            messBox.exec();
+//             return;}
+//            this->removeItem(textContainer.pop());}
 
 
-    }
+   }
 
 
 
@@ -235,48 +292,90 @@ void MyScene::setLineWidth(int lineWidth){
 
 void MyScene::setFillColour(QColor colourFill){
 
-    myBrush.setStyle(Qt::SolidPattern);
+
     myBrush.setColor(colourFill);
+    myBrush.setStyle(Qt::SolidPattern);
+
+
+
+
+
+    this->update();
+
+
+
 }
 
-void MyScene::drawText(QGraphicsTextItem *myGrText)
 
+
+void MyScene::myOpacityFunc(float opacity)
 {
-    figureType_=Text;
-    this->addItem(myGrText);
-    textContainer.push_back(myGrText) ;qDebug ("test container");
+  emit myOpacity=opacity;
+   figure=saveContainer_.constLast();
+   figure->setOpacity(myOpacity);
+   saveContainer_.push_front(figure);
+   figure=nullptr;
 
-
-
-
-
-
-
-
-
+   this->update();
 }
 
-void MyScene::editText()
+void MyScene::editorLostFocus(MyTextClass *myText)
 {
+qDebug()<<Q_FUNC_INFO;
 
-//    myTextItem->setFlags(QGraphicsItem::ItemIsSelectable | QGraphicsItem::ItemIsMovable |
-//                        QGraphicsItem::ItemIsFocusable|QGraphicsItem::ItemSendsGeometryChanges );
-   // if(!myTextItem){return;}
-    //myTextItem->setTextInteractionFlags(Qt::TextEditorInteraction);
-   // figure=myTextItem;
 
+        QTextCursor cursor = myText->textCursor();
+        cursor.clearSelection();
+       myText->setTextCursor(cursor);
+//       this->clearSelection();
+//       figure->setCursor(Qt::ArrowCursor);
+
+
+        if (myText->toPlainText().isEmpty()) {
+           removeItem(myText);
+            myText->deleteLater();
+            update();
+        }
 
 
 }
 
 
-
-
-
-void MyScene::myDragEvent()
+void MyScene::rotationFigure(int rotate)
 {
+   emit myRotate=rotate;
+   if(saveContainer_.isEmpty()){return;}
 
+   figure=saveContainer_.last();
+
+   QRectF bbox = figure->boundingRect().normalized();
+     QPointF center = bbox.center();
+     figure->setTransformOriginPoint(center);
+
+   figure->setRotation(myRotate);
+   saveContainer_.push_front(figure);
+   figure=nullptr;
+
+   myRotate=0;
+   update();
 
 }
+
+void MyScene::scaleFigure(int scale)
+{
+    figure->setScale(scale);
+}
+
+
+
+
+
+
+
+//void MyScene::myDragEvent()
+//{
+
+
+//}
 
 

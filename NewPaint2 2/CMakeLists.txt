@@ -35,6 +35,10 @@ set(PROJECT_SOURCES
         myresource.qrc
         myscene.cpp
         myscene.h
+        figuretype.h
+        mytextclass.cpp
+        mytextclass.h
+
 
 
 

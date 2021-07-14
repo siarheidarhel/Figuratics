@@ -11,6 +11,9 @@
 #include <QGraphicsSceneMouseEvent>
 #include<myscene.h>
 #include<QInputDialog>
+#include <figuretype.h>
+#include<mytextclass.h>
+#include <QStyleOptionGraphicsItem>
 
 #include <QFileDialog>
 
@@ -19,15 +22,10 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
-    ui->setupUi(this);
-        scene = new MyScene(this);
+      ui->setupUi(this);
+      scene = new MyScene(this);
       ui->graphicsView->setScene(scene);
-      //scene->setItemIndexMethod(QGraphicsScene::NoIndex);
-     // ui->graphicsView->setCacheMode(QGraphicsView::CacheBackground);
-     // ui->graphicsView->setViewportUpdateMode(QGraphicsView::BoundingRectViewportUpdate);
-
-
-
+      ui->spinBox_2->setValue(0);
       setWindowTitle(windowTitle);
 
 
@@ -61,7 +59,7 @@ void MainWindow::on_lineButton_clicked()
    ui->pointsButton->setDown(false);
    ui->PencilButton->setDown(false);
    ui->textButton->setDown(false);
-   ui->editText->setDown(false);
+   ui->moveItemButton->setDown(false);
 
    scene->setFigureType(Line);
 }
@@ -77,7 +75,7 @@ void MainWindow::on_triangleButton_clicked()
    ui-> pointsButton->setDown(false);
    ui-> PencilButton->setDown(false);
    ui->textButton->setDown(false);
-   ui->editText->setDown(false);
+   ui->moveItemButton->setDown(false);
 
     scene->setFigureType(Triangle);
 }
@@ -97,15 +95,17 @@ void MainWindow::on_rectButton_clicked()
    ui-> pointsButton->setDown(false);
    ui-> PencilButton->setDown(false);
    ui->textButton->setDown(false);
-    ui->editText->setDown(false);
+    ui->moveItemButton->setDown(false);
 
     scene->setFigureType(Rectangle);
+
 }
 
 void MainWindow::on_clearButton_5_clicked()
 {
     this->setCursor(QCursor(Qt::ArrowCursor));
     scene->clearScene();
+    scene->clear();
 }
 
 
@@ -119,7 +119,7 @@ void MainWindow::on_PencilButton_clicked()
    ui-> pointsButton->setDown(false);
    ui-> PencilButton->setDown(true);
    ui->textButton->setDown(false);
-    ui->editText->setDown(false);
+    ui->moveItemButton->setDown(false);
 
     scene->setFigureType(Pencil);
 }
@@ -134,9 +134,10 @@ void MainWindow::on_circleButton_clicked()
    ui-> pointsButton->setDown(false);
    ui-> PencilButton->setDown(false);
    ui->textButton->setDown(false);
-    ui->editText->setDown(false);
+    ui->moveItemButton->setDown(false);
 
    scene->setFigureType(Circle);
+
 }
 
 void MainWindow::on_pointsButton_clicked()
@@ -149,7 +150,7 @@ void MainWindow::on_pointsButton_clicked()
    ui-> pointsButton->setDown(true);
    ui-> PencilButton->setDown(false);
    ui->textButton->setDown(false);
-   ui->editText->setDown(false);
+   ui->moveItemButton->setDown(false);
 
     scene->setFigureType(Points);
 }
@@ -229,6 +230,7 @@ void MainWindow::on_openButton_clicked()
 
 void MainWindow::on_textButton_clicked()
 {
+
    ui-> lineButton->setDown(false);
    ui-> triangleButton->setDown(false);
    ui-> rectButton->setDown(false);
@@ -236,14 +238,10 @@ void MainWindow::on_textButton_clicked()
    ui-> pointsButton->setDown(false);
    ui-> PencilButton->setDown(false);
    ui-> textButton->setDown(false);
-    ui->editText->setDown(false);
+   ui->moveItemButton->setDown(false);
 
-   //scene->setFigureType(Text);
-   inputText = QInputDialog::getText(this, tr("Set Text"),tr("Text"));
-   myTextItem= new QGraphicsTextItem(inputText);
 
-   scene->drawText(myTextItem);
-   scene->blockSignals(true);
+  scene->setFigureType(Text);
 
 }
 
@@ -253,18 +251,41 @@ void MainWindow::on_spinBox_2_valueChanged(int rotate)
 {
     this->setCursor(QCursor(Qt::ArrowCursor));
     scene->rotationFigure(rotate);
+
+
 }
 
-void MainWindow::on_editText_clicked()
+//void MainWindow::on_editText_clicked()
+//{
+//    this->setCursor(QCursor(Qt::IBeamCursor));
+//    ui-> lineButton->setDown(false);
+//    ui-> triangleButton->setDown(false);
+//    ui-> rectButton->setDown(false);
+//    ui-> circleButton->setDown(false);
+//    ui-> pointsButton->setDown(false);
+//    ui-> PencilButton->setDown(false);
+//    ui-> textButton->setDown(false);
+//    ui->editText->setDown(true);
+   // scene->setFigureType(Text);
+
+//}
+
+void MainWindow::on_doubleSpinBox_valueChanged(double figureOpacity)
 {
-    this->setCursor(QCursor(Qt::IBeamCursor));
-    ui-> lineButton->setDown(false);
-    ui-> triangleButton->setDown(false);
-    ui-> rectButton->setDown(false);
-    ui-> circleButton->setDown(false);
-    ui-> pointsButton->setDown(false);
-    ui-> PencilButton->setDown(false);
-    ui-> textButton->setDown(false);
-    ui->editText->setDown(true);
-    scene->editText();
+    scene->myOpacityFunc(figureOpacity);
+
+}
+
+void MainWindow::on_moveItemButton_clicked()
+{
+    //this->setCursor(QCursor(Qt::IBeamCursor));
+        ui-> lineButton->setDown(false);
+        ui-> triangleButton->setDown(false);
+        ui-> rectButton->setDown(false);
+        ui-> circleButton->setDown(false);
+        ui-> pointsButton->setDown(false);
+        ui-> PencilButton->setDown(false);
+        ui-> textButton->setDown(false);
+        ui->moveItemButton->setDown(true);
+        scene->setFigureType(MoveItem);
 }

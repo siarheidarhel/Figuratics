@@ -9,6 +9,9 @@
 #include<QPicture>
 #include <QGraphicsLineItem>
 #include <QString>
+#include <figuretype.h>
+//#include <mytextclass.h>
+
 
 
 
@@ -18,10 +21,11 @@ namespace Ui {
 class MainWindow;
 }
 class MyScene;
+class MyTextClass;
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
-QGraphicsTextItem *myTextItem= new QGraphicsTextItem(inputText);
+    QGraphicsTextItem *myTextItem=nullptr;
     QString windowTitle ={"Simple Painter"};
     QString inputText;
 
@@ -32,6 +36,7 @@ public:
 private:
     Ui::MainWindow *ui=nullptr;
     MyScene *scene=nullptr;
+  MyTextClass *myText=nullptr;
 
 
 private slots:
@@ -62,10 +67,15 @@ private slots:
 
     void on_spinBox_2_valueChanged(int rotate);
 
-    void on_editText_clicked();
+//    void on_editText_clicked();
 
-protected:
+    //void on_doubleSpinBox_valueChanged(double figureOpacity);
 
+//signals:
+    void on_doubleSpinBox_valueChanged(double figureOpacity);
+
+
+    void on_moveItemButton_clicked();
 };
 
 #endif // MAINWINDOW_H

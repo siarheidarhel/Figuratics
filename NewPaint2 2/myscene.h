@@ -15,31 +15,35 @@
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QGraphicsTextItem>
-//#include <>
+#include<figuretype.h>
+#include <mytextclass.h>
 
-enum figureType {Line, Circle, Rectangle, Triangle, Pencil, Points, Text};
 
 
+//class MyTextClass;
 class MyScene : public QGraphicsScene
 {
+
     Q_OBJECT
-    //QGraphicsTextItem *myTextItem=nullptr;
-   // QGraphicsTextItem *myTextItem;
-    //QString myText;
+    QGraphicsTextItem *myTextItem;
+
+
     int figureType_=0;
     const QString warnMessage ={"No UNDO availible"};
+//    const QString warnTextMessage={"No Text object"};
     QPointF start_point;
     QPointF end_point;
     QMessageBox messBox;
 
     QStack<QGraphicsItem*> saveContainer_;
-    QStack<QGraphicsTextItem*> textContainer;
+   // QStack<QGraphicsTextItem*> textContainer;
 
     QColorDialog colourDialog;
-
+   QFont myFont;
     QPen myPen;
     QBrush myBrush;
     int myRotate=0;
+    float myOpacity=1.0;
 
 
     QString fileName = "testMyfile.png";
@@ -53,8 +57,11 @@ class MyScene : public QGraphicsScene
 
 
 public:
-    MyScene(QObject *parent=nullptr);
+
+    explicit MyScene(QObject *parent=nullptr);
     ~MyScene();
+    MyTextClass *myText;
+
 
         void setFigureType(int figureType);
 
@@ -77,21 +84,32 @@ public:
         void setLineWidth(int lineWidth);
 
         void setFillColour(QColor colourFill);
-        void drawText(QGraphicsTextItem *myGrText);
-        void editText();
-        void myDragEvent();
+       //void myTextAdd(QString mystring);
+//        void editText();
+        //void myDragEvent();
+
 
         void clearScene();
         void rotationFigure (int rotate);
+        void scaleFigure (int scale);
 
+        void myOpacityFunc(float opacity);
 
+public slots:
+        void editorLostFocus(MyTextClass *myText);
 
-
+signals:
+        void itemSelected (QGraphicsItem *item);
 
 protected:
-    void mouseMoveEvent(QGraphicsSceneMouseEvent *event)override;
-    void mousePressEvent(QGraphicsSceneMouseEvent *event)override;
-    void mouseReleaseEvent(QGraphicsSceneMouseEvent *event)override;
+        virtual    void mouseMoveEvent(QGraphicsSceneMouseEvent *event)override;
+       virtual void mousePressEvent(QGraphicsSceneMouseEvent *event)override;
+       void mouseReleaseEvent(QGraphicsSceneMouseEvent *event)override;
+    //void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event)override;
+
+
+
+
 };
 
 #endif // MYSCENE_H
