@@ -36,6 +36,8 @@ class MyScene : public QGraphicsScene
     QMessageBox messBox;
 
     QStack<QGraphicsItem*> saveContainer_;
+    QList<QGraphicsItemGroup*> savePancil;
+    QGraphicsItemGroup myGroup;
    // QStack<QGraphicsTextItem*> textContainer;
 
     QColorDialog colourDialog;
@@ -45,13 +47,15 @@ class MyScene : public QGraphicsScene
     int myRotate=0;
     float myOpacity=1.0;
 
+    int myAt=0;
+
 
     QString fileName = "testMyfile.png";
 
 
 
     QGraphicsItem *figure=nullptr;
-
+    //QGraphicsItem *tempItem=nullptr;
 
 
 
@@ -110,6 +114,10 @@ protected:
 
 
 
+
+       // QGraphicsScene interface
+protected:
+       virtual void keyPressEvent(QKeyEvent *event) override;
 };
 
 #endif // MYSCENE_H

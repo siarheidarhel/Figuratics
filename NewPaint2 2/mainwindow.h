@@ -28,6 +28,7 @@ class MainWindow : public QMainWindow
     QGraphicsTextItem *myTextItem=nullptr;
     QString windowTitle ={"Simple Painter"};
     QString inputText;
+    QString myHelpMove={"USE \n <UP> AND <DOWN> \n KEYS TO NAVIGATE SELECTIONS"};
 
 public:
     explicit MainWindow(QWidget *parent = nullptr);

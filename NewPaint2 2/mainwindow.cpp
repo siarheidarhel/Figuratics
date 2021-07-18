@@ -24,9 +24,13 @@ MainWindow::MainWindow(QWidget *parent)
 {
       ui->setupUi(this);
       scene = new MyScene(this);
+      ui->graphicsView->setFixedSize (700,740);
       ui->graphicsView->setScene(scene);
       ui->spinBox_2->setValue(0);
       setWindowTitle(windowTitle);
+      ui->helpWindow->setHidden(true);
+      ui->helpLabel->setHidden(true);
+
 
 
       //ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -61,6 +65,10 @@ void MainWindow::on_lineButton_clicked()
    ui->textButton->setDown(false);
    ui->moveItemButton->setDown(false);
 
+   ui->helpLabel->setHidden(true);
+   ui->helpWindow->setHidden(true);
+   ui->helpWindow->clear();
+
    scene->setFigureType(Line);
 }
 
@@ -76,6 +84,10 @@ void MainWindow::on_triangleButton_clicked()
    ui-> PencilButton->setDown(false);
    ui->textButton->setDown(false);
    ui->moveItemButton->setDown(false);
+
+   ui->helpLabel->setHidden(true);
+   ui->helpWindow->setHidden(true);
+   ui->helpWindow->clear();
 
     scene->setFigureType(Triangle);
 }
@@ -96,6 +108,10 @@ void MainWindow::on_rectButton_clicked()
    ui-> PencilButton->setDown(false);
    ui->textButton->setDown(false);
     ui->moveItemButton->setDown(false);
+
+    ui->helpLabel->setHidden(true);
+    ui->helpWindow->setHidden(true);
+    ui->helpWindow->clear();
 
     scene->setFigureType(Rectangle);
 
@@ -121,6 +137,10 @@ void MainWindow::on_PencilButton_clicked()
    ui->textButton->setDown(false);
     ui->moveItemButton->setDown(false);
 
+    ui->helpLabel->setHidden(true);
+    ui->helpWindow->setHidden(true);
+    ui->helpWindow->clear();
+
     scene->setFigureType(Pencil);
 }
 
@@ -134,7 +154,12 @@ void MainWindow::on_circleButton_clicked()
    ui-> pointsButton->setDown(false);
    ui-> PencilButton->setDown(false);
    ui->textButton->setDown(false);
-    ui->moveItemButton->setDown(false);
+   ui->moveItemButton->setDown(false);
+
+
+   ui->helpLabel->setHidden(true);
+   ui->helpWindow->setHidden(true);
+   ui->helpWindow->clear();
 
    scene->setFigureType(Circle);
 
@@ -151,6 +176,10 @@ void MainWindow::on_pointsButton_clicked()
    ui-> PencilButton->setDown(false);
    ui->textButton->setDown(false);
    ui->moveItemButton->setDown(false);
+
+   ui->helpLabel->setHidden(true);
+   ui->helpWindow->setHidden(true);
+   ui->helpWindow->clear();
 
     scene->setFigureType(Points);
 }
@@ -241,6 +270,10 @@ void MainWindow::on_textButton_clicked()
    ui->moveItemButton->setDown(false);
 
 
+   ui->helpLabel->setHidden(true);
+   ui->helpWindow->setHidden(true);
+   ui->helpWindow->clear();
+
   scene->setFigureType(Text);
 
 }
@@ -278,7 +311,7 @@ void MainWindow::on_doubleSpinBox_valueChanged(double figureOpacity)
 
 void MainWindow::on_moveItemButton_clicked()
 {
-    //this->setCursor(QCursor(Qt::IBeamCursor));
+
         ui-> lineButton->setDown(false);
         ui-> triangleButton->setDown(false);
         ui-> rectButton->setDown(false);
@@ -287,5 +320,13 @@ void MainWindow::on_moveItemButton_clicked()
         ui-> PencilButton->setDown(false);
         ui-> textButton->setDown(false);
         ui->moveItemButton->setDown(true);
-        scene->setFigureType(MoveItem);
+
+          ui->helpLabel->setHidden(false);
+         ui->helpWindow->setHidden(false);
+         ui->helpWindow->setEnabled(true);
+         ui->helpWindow->setText(myHelpMove);
+
+      scene->setFigureType(MoveItem);
+
+
 }

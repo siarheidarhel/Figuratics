@@ -14,15 +14,17 @@ MyTextClass::MyTextClass(QGraphicsItem *parent ):  QGraphicsTextItem(parent)
 
  myFont=(QFont("Courier"));
  myColor=Qt::green;
- setDefaultTextColor(myColor);
-setFlag(QGraphicsItem::ItemIsSelectable,true);
- setFlag ( QGraphicsItem::ItemIsMovable,true);
- setFlag(QGraphicsItem::ItemIsFocusable,true);
-  //setTextInteractionFlags(Qt::TextEditorInteraction);
+ this->setDefaultTextColor(myColor);
+ this->setFlag(QGraphicsItem::ItemIsSelectable,true);
+ this->setFlag ( QGraphicsItem::ItemIsMovable,true);
+ this->setFlag(QGraphicsItem::ItemIsFocusable,true);
+ this->setTextInteractionFlags(Qt::TextEditorInteraction);
+ this->setFlag(QGraphicsItem::ItemAcceptsInputMethod);
 
 
 
 }
+
 
 
 
