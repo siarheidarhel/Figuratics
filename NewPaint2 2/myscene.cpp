@@ -19,10 +19,12 @@
 
 
 
+
 MyScene::MyScene(QObject *parent): QGraphicsScene(parent)
 {
 
 myText=nullptr;
+
 
 }
 
@@ -62,13 +64,17 @@ void MyScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
               addItem(myText);
               figure=myText;
               figure->setPos(event->scenePos());
-//              update();
+              update();
               break;
 
     case MoveItem:
                  if(saveContainer_.isEmpty()){return;}
-
-                     figure=saveContainer_.at(myAt);
+                     // figure=saveContainer_.last();
+                     // figure->setFocus();
+                    // figure=saveContainer_.at(myAt);
+                    // figure->setFocus(Qt::MouseFocusReason);
+                 if(!focusItem()){figure->setFocus(Qt::MouseFocusReason);}
+                     figure=focusItem();
                      //QRectF myTempRect=figure->boundingRect();
                      //figure=addRect(myTempRect,QPen(Qt::red),QBrush());
 
@@ -105,7 +111,7 @@ void MyScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
         case  Points:saveContainer_.push_back(figure);qDebug("saveContainer");break;
     }
         figure->setCursor(Qt::ArrowCursor);
-
+emit myReset();
         figure=nullptr;
 
 QGraphicsScene::mouseReleaseEvent(event);
@@ -179,13 +185,13 @@ void MyScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
   switch (figureType_) {
 
 
-   case Line:end_point =event->scenePos(); drawLine(); break;
-   case Rectangle:end_point =event->scenePos(); drawRect(); break;
-   case Triangle:end_point =event->scenePos(); drawTriangle(); break;
+   case Line:end_point =event->scenePos(); drawLine();figure->setFocus(); break;
+   case Rectangle:end_point =event->scenePos(); drawRect(); figure->setFocus(); break;
+   case Triangle:end_point =event->scenePos(); drawTriangle();figure->setFocus(); break;
    case Pencil:end_point =event->scenePos(); drawPencile(); break;
 
-   case Circle: end_point =event->scenePos(); drawCircle();   break;
-   case Points:end_point =event->scenePos();drawPoints();  break;
+   case Circle: end_point =event->scenePos(); drawCircle(); figure->setFocus();  break;
+   case Points:end_point =event->scenePos();drawPoints();figure->setFocus(); break;
    case Text: break;
    case MoveItem:
                   if(saveContainer_.isEmpty()){
@@ -296,6 +302,8 @@ void MyScene::drawCircle(){
     figure->setRotation(myRotate);
     figure->setOpacity(myOpacity);
     figure->setFlags(QGraphicsItem::ItemIsFocusable| QGraphicsItem::ItemIsMovable|QGraphicsItem::ItemIsSelectable );
+    //figure->setSelected(true);
+//    figure->setFocus(Qt::ClickFocus);
 
 
 }
@@ -396,10 +404,13 @@ if (myText->toPlainText().isEmpty()) {
        myText->setTextCursor(cursor);
        figure=myText;
        saveContainer_.push_back(figure); qDebug()<<"Text to save";
+
    }
 
 
 }
+
+
 
 //---------------------------------------------------ROTATION
 
@@ -417,11 +428,14 @@ void MyScene::rotationFigure(int rotate)
    figure->setRotation(myRotate);
    saveContainer_.push_front(figure);
    figure=nullptr;
-
+//emit myReset();qDebug()<<"myReset emit";
    myRotate=0;
    update();
 
 }
+
+
+
 
 //---------------------------------------------------SCALE_FIGURE
 
@@ -429,9 +443,6 @@ void MyScene::scaleFigure(int scale)
 {
     figure->setScale(scale);
 }
-
-
-
 
 
 

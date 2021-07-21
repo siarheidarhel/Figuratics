@@ -36,7 +36,7 @@ public:
 
 private:
     Ui::MainWindow *ui=nullptr;
-    MyScene *scene=nullptr;
+     MyScene *scene=nullptr;
   MyTextClass *myText=nullptr;
 
 
@@ -68,15 +68,19 @@ private slots:
 
     void on_spinBox_2_valueChanged(int rotate);
 
-//    void on_editText_clicked();
 
-    //void on_doubleSpinBox_valueChanged(double figureOpacity);
 
-//signals:
+
+
+
     void on_doubleSpinBox_valueChanged(double figureOpacity);
 
 
     void on_moveItemButton_clicked();
+
+public slots:
+    void resetRotation ();
+
 };
 
 #endif // MAINWINDOW_H

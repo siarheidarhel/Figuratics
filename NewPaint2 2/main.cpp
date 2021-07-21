@@ -1,5 +1,5 @@
 #include "mainwindow.h"
-#include <mytextclass.h>
+
 
 #include <QApplication>
 

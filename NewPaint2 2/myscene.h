@@ -88,9 +88,6 @@ public:
         void setLineWidth(int lineWidth);
 
         void setFillColour(QColor colourFill);
-       //void myTextAdd(QString mystring);
-//        void editText();
-        //void myDragEvent();
 
 
         void clearScene();
@@ -102,21 +99,17 @@ public:
 public slots:
         void editorLostFocus(MyTextClass *myText);
 
+
+
 signals:
         void itemSelected (QGraphicsItem *item);
+        void myReset();
+
 
 protected:
         virtual    void mouseMoveEvent(QGraphicsSceneMouseEvent *event)override;
        virtual void mousePressEvent(QGraphicsSceneMouseEvent *event)override;
        void mouseReleaseEvent(QGraphicsSceneMouseEvent *event)override;
-    //void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event)override;
-
-
-
-
-
-       // QGraphicsScene interface
-protected:
        virtual void keyPressEvent(QKeyEvent *event) override;
 };
 

@@ -22,6 +22,7 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
+
       ui->setupUi(this);
       scene = new MyScene(this);
       ui->graphicsView->setFixedSize (700,740);
@@ -31,6 +32,7 @@ MainWindow::MainWindow(QWidget *parent)
       ui->helpWindow->setHidden(true);
       ui->helpLabel->setHidden(true);
 
+connect(scene, SIGNAL(myReset()), this, SLOT(resetRotation()));qDebug()<<"slot";
 
 
       //ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -284,9 +286,17 @@ void MainWindow::on_spinBox_2_valueChanged(int rotate)
 {
     this->setCursor(QCursor(Qt::ArrowCursor));
     scene->rotationFigure(rotate);
-
+    //connect(scene, SIGNAL(&MyScene::rotationFigure), this,SLOT(MainWindow::resetRotation()));qDebug()<<"slot";
 
 }
+
+void MainWindow::resetRotation()
+{
+    ui->spinBox_2->setValue(0);
+}
+
+
+
 
 //void MainWindow::on_editText_clicked()
 //{
