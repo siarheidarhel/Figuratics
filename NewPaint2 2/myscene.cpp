@@ -69,14 +69,11 @@ void MyScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
 
     case MoveItem:
                  if(saveContainer_.isEmpty()){return;}
-                     // figure=saveContainer_.last();
-                     // figure->setFocus();
-                    // figure=saveContainer_.at(myAt);
-                    // figure->setFocus(Qt::MouseFocusReason);
-                 if(!focusItem()){figure->setFocus(Qt::MouseFocusReason);}
+
+
+                 if(!focusItem()){this->setFocusItem(items().at(myAt));qDebug()<<focusItem(); }
                      figure=focusItem();
-                     //QRectF myTempRect=figure->boundingRect();
-                     //figure=addRect(myTempRect,QPen(Qt::red),QBrush());
+
 
                      figure->setCursor(Qt::ClosedHandCursor);
                      break;
@@ -111,7 +108,7 @@ void MyScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
         case  Points:saveContainer_.push_back(figure);qDebug("saveContainer");break;
     }
         figure->setCursor(Qt::ArrowCursor);
-emit myReset();
+//emit myReset();
         figure=nullptr;
 
 QGraphicsScene::mouseReleaseEvent(event);
@@ -418,17 +415,18 @@ void MyScene::rotationFigure(int rotate)
 {
    emit myRotate=rotate;
    if(saveContainer_.isEmpty()){return;}
-
-   figure=saveContainer_.last();
-
+ //if(figure==nullptr){return;}
+   figure=saveContainer_.at(myAt);
+  this->setFocusItem(figure);
+     //figure=focusItem();
    QRectF bbox = figure->boundingRect().normalized();
      QPointF center = bbox.center();
      figure->setTransformOriginPoint(center);
 
    figure->setRotation(myRotate);
-   saveContainer_.push_front(figure);
+   //saveContainer_.push_front(figure);
    figure=nullptr;
-//emit myReset();qDebug()<<"myReset emit";
+
    myRotate=0;
    update();
 
