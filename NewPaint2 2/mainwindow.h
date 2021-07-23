@@ -29,6 +29,9 @@ class MainWindow : public QMainWindow
     QString windowTitle ={"Simple Painter"};
     QString inputText;
     QString myHelpMove={"USE \n <UP> AND <DOWN> \n KEYS TO NAVIGATE SELECTIONS"};
+    //QBrush myBack=( Qt::red);
+    QPalette myPalleteFill;
+    QPalette myPalleteBorders;
 
 public:
     explicit MainWindow(QWidget *parent = nullptr);

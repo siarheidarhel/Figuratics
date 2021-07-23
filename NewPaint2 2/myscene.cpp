@@ -56,13 +56,18 @@ void MyScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
     case Text:
               myText=new MyTextClass();
               myText->setTextInteractionFlags(Qt::TextEditorInteraction);
+              myText->setFlag(QGraphicsItem::ItemIsFocusable);
 
               connect(myText, &MyTextClass::lostFocus, this, &MyScene::editorLostFocus);
 
               connect(myText, &MyTextClass::selectedChange,this, &MyScene::itemSelected);
 
-              addItem(myText);
+             // this->addItem(myText);
+
               figure=myText;
+              this->addItem(figure);
+              saveContainer_.push_back(figure);
+
               figure->setPos(event->scenePos());
               update();
               break;
@@ -71,12 +76,21 @@ void MyScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
                  if(saveContainer_.isEmpty()){return;}
 
 
-                 if(!focusItem()){this->setFocusItem(items().at(myAt));qDebug()<<focusItem(); }
-                     figure=focusItem();
+                 //if(!focusItem()){ this->setFocusItem(this->items().at(myAt));  qDebug()<<items().at(myAt) <<" ---FOCUS IF NO FOCUS"; }
+                // if(this->items().isDetached()){qDebug()<<this->items().isDetached()<<items().isEmpty() <<"IS DETACHED";}
+
+                 QList<QGraphicsItem*> itemStack =this->items(); qDebug()<<itemStack.count()<<" __count";
+                 if(selectedItems().isEmpty()){    event->ignore(); qDebug()<<"IGNORE";  break;                   }//saveContainer_.at(myAt)->setSelected(true);}
+                 QGraphicsItem *temItem=this->selectedItems().first();
 
 
-                     figure->setCursor(Qt::ClosedHandCursor);
-                     break;
+                  auto index=itemStack.indexOf(temItem);
+
+                 figure=this->items().at(index) ; qDebug()<<figure->hasFocus()<<" --Has FOCUS";
+                 figure->setCursor(Qt::ClosedHandCursor);
+
+
+        break;
     }
 }
 QGraphicsScene::mousePressEvent(event);
@@ -99,7 +113,7 @@ void MyScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
    {
 
         case Pencil:savePancil.push_back(&myGroup); break;
-        case Text:event->ignore();qDebug()<<"Text Item Release Ignore";break;
+        case Text:event->ignore(); /*saveContainer_.push_back(myText); */      qDebug()<<"Text Item Release Ignore";break;
         case MoveItem: event->ignore();qDebug()<<"Move Item Release Ignore";break;
         case Line:  saveContainer_.push_back(figure);qDebug("saveContainer");break;
         case Circle:saveContainer_.push_back(figure);qDebug("saveContainer");break;
@@ -108,7 +122,7 @@ void MyScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
         case  Points:saveContainer_.push_back(figure);qDebug("saveContainer");break;
     }
         figure->setCursor(Qt::ArrowCursor);
-//emit myReset();
+
         figure=nullptr;
 
 QGraphicsScene::mouseReleaseEvent(event);
@@ -123,8 +137,12 @@ QGraphicsScene::mouseReleaseEvent(event);
 void MyScene::keyPressEvent(QKeyEvent *event)
 {
 
-     if(figureType_==Text){event->text();   qDebug()<<"Text Input" <<":"<<event->text(); /*QGraphicsScene::keyPressEvent(event);*/}
-    if(event->key()==Qt::Key_Up ){
+     if(figureType_==Text){event->text();  qDebug()<<"Text Input" <<":"<<event->text(); /*QGraphicsScene::keyPressEvent(event);*/}
+
+
+
+
+     if(event->key()==Qt::Key_Up ){
 
             if(myAt<=(saveContainer_.count()-1))
         {
@@ -151,10 +169,13 @@ void MyScene::keyPressEvent(QKeyEvent *event)
 
 
                else{ emit --myAt;
-                      // for(int i=0; i<saveContainer_.count()-1;){saveContainer_.at(i)->setSelected(false);}
+                        for(int i=0; i<saveContainer_.size()-1;++i){saveContainer_.at(i)->setSelected(false);}
+
 
                     saveContainer_.at(myAt+1)->setSelected(false);
                     saveContainer_.at(myAt)->setSelected(true);
+                    figure=saveContainer_.at(myAt);
+
 
                     qDebug()<< "--"<<myAt<<" <-->"<<saveContainer_.count()-1 ;}
          }
@@ -192,6 +213,7 @@ void MyScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
    case Text: break;
    case MoveItem:
                   if(saveContainer_.isEmpty()){
+
                        QWidget *my = nullptr;
                        QMessageBox::information (my,(""), tr("No OBJECT to move"),  QMessageBox::Ok);
 
@@ -199,14 +221,16 @@ void MyScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
                        return; }
 
                    else  {
+                         if(selectedItems().isEmpty()){event->ignore(); break;}
+                          else{ QRectF bbox = figure->boundingRect().normalized();
+                       figure->setPos(event->scenePos()-bbox.center());}
+                      // myText->setPos(event->scenePos()-bbox.center());
 
-                       QRectF bbox = figure->boundingRect().normalized();
-                       figure->setPos(event->scenePos()-bbox.center());
 
-                   }
+                   }break;
              }
       }
-
+QGraphicsScene::mouseMoveEvent(event);
 }
 
 //---------------------------------------------------LINE
@@ -298,7 +322,10 @@ void MyScene::drawCircle(){
     figure= addEllipse(start_point.x(), start_point.y(),w, h,QPen(myPen),QBrush(myBrush));
     figure->setRotation(myRotate);
     figure->setOpacity(myOpacity);
-    figure->setFlags(QGraphicsItem::ItemIsFocusable| QGraphicsItem::ItemIsMovable|QGraphicsItem::ItemIsSelectable );
+    figure->setFlag(QGraphicsItem::ItemIsFocusable,true);
+    figure->setFlag(QGraphicsItem::ItemIsMovable,true);
+    figure->setFlag(QGraphicsItem::ItemIsSelectable,true);
+    //figure->setFlags(QGraphicsItem::ItemIsFocusable| QGraphicsItem::ItemIsMovable|QGraphicsItem::ItemIsSelectable );
     //figure->setSelected(true);
 //    figure->setFocus(Qt::ClickFocus);
 
@@ -396,11 +423,15 @@ if (myText->toPlainText().isEmpty()) {
     myText->deleteLater();
     update();
 }
- else{       QTextCursor cursor = myText->textCursor();
+ else{
+
+        QTextCursor cursor = myText->textCursor();
         cursor.clearSelection();
        myText->setTextCursor(cursor);
-       figure=myText;
-       saveContainer_.push_back(figure); qDebug()<<"Text to save";
+//       myText->setFocus(Qt::MouseFocusReason);
+
+       //figure=myText;
+      // saveContainer_.push_back(figure); qDebug()<<saveContainer_.last()<< "FIGURE--"<<figure <<"Text to save";
 
    }
 
@@ -419,6 +450,8 @@ void MyScene::rotationFigure(int rotate)
    figure=saveContainer_.at(myAt);
   this->setFocusItem(figure);
      //figure=focusItem();
+
+
    QRectF bbox = figure->boundingRect().normalized();
      QPointF center = bbox.center();
      figure->setTransformOriginPoint(center);

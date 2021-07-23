@@ -106,6 +106,7 @@ signals:
         void myReset();
 
 
+
 protected:
         virtual    void mouseMoveEvent(QGraphicsSceneMouseEvent *event)override;
        virtual void mousePressEvent(QGraphicsSceneMouseEvent *event)override;

@@ -39,11 +39,25 @@ signals:
     void lostFocus(MyTextClass *myText);
     void selectedChange(QGraphicsItem *item);
 
+
+
 // QGraphicsItem interface
 protected:
   QVariant itemChange(GraphicsItemChange change, const QVariant &value) override;
   void focusOutEvent(QFocusEvent *event) override;
     void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) override;
+     void focusInEvent(QFocusEvent *event) override;
+
+
+
+    // QGraphicsItem interface
+//public:
+   // virtual QRectF boundingRect() const override;
+    //virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
+
+//protected:
+    //virtual void focusInEvent(QFocusEvent *event) override;
+
 
 
 };

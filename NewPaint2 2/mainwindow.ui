@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>945</width>
+    <width>1016</width>
     <height>748</height>
    </rect>
   </property>
@@ -25,13 +25,36 @@
      <rect>
       <x>740</x>
       <y>10</y>
-      <width>184</width>
-      <height>321</height>
+      <width>181</width>
+      <height>348</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <layout class="QGridLayout" name="gridLayout">
+       <item row="5" column="1">
+        <widget class="QPushButton" name="undoButton">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Undo</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="myresource.qrc">
+           <normaloff>:/new/icons/undo.png</normaloff>:/new/icons/undo.png</iconset>
+         </property>
+         <property name="shortcut">
+          <string>Ctrl+Z</string>
+         </property>
+        </widget>
+       </item>
        <item row="1" column="0">
         <widget class="QPushButton" name="triangleButton">
          <property name="sizePolicy">
@@ -58,6 +81,25 @@
          </property>
         </widget>
        </item>
+       <item row="4" column="1">
+        <widget class="QPushButton" name="fillColourButton">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Fill figure with colour</string>
+         </property>
+         <property name="toolTipDuration">
+          <number>-1</number>
+         </property>
+         <property name="text">
+          <string>Fill</string>
+         </property>
+        </widget>
+       </item>
        <item row="3" column="1">
         <widget class="QPushButton" name="eraseButton">
          <property name="sizePolicy">
@@ -71,35 +113,6 @@
          </property>
          <property name="shortcut">
           <string>E</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="0">
-        <widget class="QPushButton" name="circleButton">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="toolTip">
-          <string>Draw Circle</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="myresource.qrc">
-           <normaloff>:/new/icons/circle.png</normaloff>:/new/icons/circle.png</iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>22</width>
-           <height>22</height>
-          </size>
-         </property>
-         <property name="shortcut">
-          <string>C</string>
          </property>
         </widget>
        </item>
@@ -132,8 +145,8 @@
          </property>
         </widget>
        </item>
-       <item row="4" column="0">
-        <widget class="QPushButton" name="colourButton">
+       <item row="5" column="0">
+        <widget class="QPushButton" name="clearButton_5">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
            <horstretch>0</horstretch>
@@ -141,45 +154,10 @@
           </sizepolicy>
          </property>
          <property name="toolTip">
-          <string>Set Colour of Lines</string>
+          <string>Clear the Scene</string>
          </property>
          <property name="text">
-          <string>Colour</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="0">
-        <widget class="QPushButton" name="textButton">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="text">
-          <string>Text</string>
-         </property>
-         <property name="shortcut">
-          <string>T</string>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="1">
-        <widget class="QPushButton" name="fillColourButton">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="toolTip">
-          <string>Fill figure with colour</string>
-         </property>
-         <property name="toolTipDuration">
-          <number>-1</number>
-         </property>
-         <property name="text">
-          <string>Fill</string>
+          <string>CLEAR</string>
          </property>
         </widget>
        </item>
@@ -209,31 +187,21 @@
          </property>
         </widget>
        </item>
-       <item row="5" column="1">
-        <widget class="QPushButton" name="undoButton">
+       <item row="6" column="1">
+        <widget class="QPushButton" name="textButton_2">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
-         </property>
-         <property name="toolTip">
-          <string>Undo</string>
          </property>
          <property name="text">
           <string/>
          </property>
-         <property name="icon">
-          <iconset resource="myresource.qrc">
-           <normaloff>:/new/icons/undo.png</normaloff>:/new/icons/undo.png</iconset>
-         </property>
-         <property name="shortcut">
-          <string>Ctrl+Z</string>
-         </property>
         </widget>
        </item>
-       <item row="5" column="0">
-        <widget class="QPushButton" name="clearButton_5">
+       <item row="4" column="0">
+        <widget class="QPushButton" name="colourButton">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
            <horstretch>0</horstretch>
@@ -241,10 +209,39 @@
           </sizepolicy>
          </property>
          <property name="toolTip">
-          <string>Clear the Scene</string>
+          <string>Set Colour of Lines</string>
          </property>
          <property name="text">
-          <string>CLEAR</string>
+          <string>Colour</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="0">
+        <widget class="QPushButton" name="moveItemButton">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>MOVE</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QPushButton" name="textButton">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>Text</string>
+         </property>
+         <property name="shortcut">
+          <string>T</string>
          </property>
         </widget>
        </item>
@@ -277,6 +274,35 @@
          </property>
         </widget>
        </item>
+       <item row="0" column="0">
+        <widget class="QPushButton" name="circleButton">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Draw Circle</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="myresource.qrc">
+           <normaloff>:/new/icons/circle.png</normaloff>:/new/icons/circle.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>22</width>
+           <height>22</height>
+          </size>
+         </property>
+         <property name="shortcut">
+          <string>C</string>
+         </property>
+        </widget>
+       </item>
        <item row="2" column="0">
         <widget class="QPushButton" name="pointsButton">
          <property name="sizePolicy">
@@ -293,32 +319,6 @@
          </property>
         </widget>
        </item>
-       <item row="6" column="1">
-        <widget class="QPushButton" name="textButton_2">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-       </item>
-       <item row="6" column="0">
-        <widget class="QPushButton" name="moveItemButton">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="text">
-          <string>MOVE</string>
-         </property>
-        </widget>
-       </item>
       </layout>
      </item>
     </layout>
@@ -332,41 +332,6 @@
       <height>581</height>
      </rect>
     </property>
-   </widget>
-   <widget class="QWidget" name="horizontalLayoutWidget_2">
-    <property name="geometry">
-     <rect>
-      <x>740</x>
-      <y>350</y>
-      <width>171</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <layout class="QHBoxLayout" name="horizontalLayout_2">
-     <item>
-      <widget class="QSpinBox" name="spinBox">
-       <property name="toolTip">
-        <string>Width Value</string>
-       </property>
-       <property name="minimum">
-        <number>1</number>
-       </property>
-       <property name="maximum">
-        <number>40</number>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="label">
-       <property name="toolTip">
-        <string>Set Line Width</string>
-       </property>
-       <property name="text">
-        <string>Line Width:</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
    </widget>
    <widget class="QWidget" name="horizontalLayoutWidget_3">
     <property name="geometry">
@@ -465,82 +430,6 @@ border: 2px solid grey;
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="horizontalLayoutWidget_4">
-    <property name="geometry">
-     <rect>
-      <x>740</x>
-      <y>390</y>
-      <width>171</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <layout class="QHBoxLayout" name="horizontalLayout_4">
-     <item>
-      <widget class="QSpinBox" name="spinBox_2">
-       <property name="toolTip">
-        <string>Width Value</string>
-       </property>
-       <property name="suffix">
-        <string>˚</string>
-       </property>
-       <property name="minimum">
-        <number>-360</number>
-       </property>
-       <property name="maximum">
-        <number>360</number>
-       </property>
-       <property name="value">
-        <number>0</number>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="label_2">
-       <property name="toolTip">
-        <string>Rotate figure</string>
-       </property>
-       <property name="text">
-        <string>Rotate</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QWidget" name="horizontalLayoutWidget_5">
-    <property name="geometry">
-     <rect>
-      <x>740</x>
-      <y>430</y>
-      <width>171</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <layout class="QHBoxLayout" name="horizontalLayout_5">
-     <item>
-      <widget class="QDoubleSpinBox" name="doubleSpinBox">
-       <property name="maximum">
-        <double>1.000000000000000</double>
-       </property>
-       <property name="singleStep">
-        <double>0.010000000000000</double>
-       </property>
-       <property name="value">
-        <double>1.000000000000000</double>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="label_3">
-       <property name="toolTip">
-        <string>Set opacity</string>
-       </property>
-       <property name="text">
-        <string>Opacity</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
    <widget class="QTextEdit" name="helpWindow">
     <property name="geometry">
      <rect>
@@ -576,13 +465,201 @@ border: 2px solid grey;
      <set>Qt::NoTextInteraction</set>
     </property>
    </widget>
+   <widget class="QFrame" name="frame">
+    <property name="geometry">
+     <rect>
+      <x>930</x>
+      <y>10</y>
+      <width>47</width>
+      <height>76</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <property name="leftMargin">
+      <number>10</number>
+     </property>
+     <property name="topMargin">
+      <number>10</number>
+     </property>
+     <property name="rightMargin">
+      <number>10</number>
+     </property>
+     <property name="bottomMargin">
+      <number>10</number>
+     </property>
+     <item>
+      <widget class="QLabel" name="cubeColour">
+       <property name="minimumSize">
+        <size>
+         <width>21</width>
+         <height>21</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>21</width>
+         <height>21</height>
+        </size>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::Box</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Plain</enum>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="textInteractionFlags">
+        <set>Qt::NoTextInteraction</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="cubeColour_2">
+       <property name="minimumSize">
+        <size>
+         <width>21</width>
+         <height>21</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>21</width>
+         <height>21</height>
+        </size>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::Box</enum>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="textInteractionFlags">
+        <set>Qt::NoTextInteraction</set>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>740</x>
+      <y>370</y>
+      <width>171</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <item>
+        <widget class="QSpinBox" name="spinBox">
+         <property name="toolTip">
+          <string>Width Value</string>
+         </property>
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <number>40</number>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label">
+         <property name="toolTip">
+          <string>Set Line Width</string>
+         </property>
+         <property name="text">
+          <string>Line Width</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_4">
+       <item>
+        <widget class="QSpinBox" name="spinBox_2">
+         <property name="toolTip">
+          <string>Width Value</string>
+         </property>
+         <property name="suffix">
+          <string>˚</string>
+         </property>
+         <property name="minimum">
+          <number>-360</number>
+         </property>
+         <property name="maximum">
+          <number>360</number>
+         </property>
+         <property name="value">
+          <number>0</number>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_2">
+         <property name="toolTip">
+          <string>Rotate figure</string>
+         </property>
+         <property name="text">
+          <string>Rotate</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_5">
+       <item>
+        <widget class="QDoubleSpinBox" name="doubleSpinBox">
+         <property name="maximum">
+          <double>1.000000000000000</double>
+         </property>
+         <property name="singleStep">
+          <double>0.010000000000000</double>
+         </property>
+         <property name="value">
+          <double>1.000000000000000</double>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_3">
+         <property name="toolTip">
+          <string>Set opacity</string>
+         </property>
+         <property name="text">
+          <string>Opacity</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>945</width>
+     <width>1016</width>
      <height>24</height>
     </rect>
    </property>

@@ -32,7 +32,19 @@ MainWindow::MainWindow(QWidget *parent)
       ui->helpWindow->setHidden(true);
       ui->helpLabel->setHidden(true);
 
-connect(scene, SIGNAL(myReset()), this, SLOT(resetRotation()));qDebug()<<"slot";
+      ui->cubeColour->setAutoFillBackground(true);
+      ui->cubeColour_2->setAutoFillBackground(true);
+
+      myPalleteFill.setColor(QPalette::Window,QColor(Qt::white));
+      ui->cubeColour->setPalette(myPalleteFill);
+
+      myPalleteBorders.setColor(QPalette::Window,QColor(Qt::black));
+      ui->cubeColour_2->setPalette(myPalleteBorders);
+
+
+
+
+connect(scene, SIGNAL(myReset()), this, SLOT(resetRotation()));qDebug()<<"slot myReset-resetRotation";
 
 
       //ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -197,8 +209,12 @@ void MainWindow::on_undoButton_clicked()
 
 void MainWindow::on_colourButton_clicked()
 {
-   QColor colour= QColorDialog::getColor(Qt::yellow,this);
-   scene->colourDial(colour);
+   QColor colour= QColorDialog::getColor(Qt::black,this);
+
+
+   myPalleteBorders.setColor(QPalette::Window, colour);
+   ui->cubeColour_2->setPalette(myPalleteBorders);
+    scene->colourDial(colour);
 }
 
 void MainWindow::on_spinBox_valueChanged(int arg1)
@@ -214,7 +230,17 @@ void MainWindow::on_spinBox_valueChanged(int arg1)
 
 void MainWindow::on_fillColourButton_clicked()
 {
-    QColor colourFill =QColorDialog::getColor(Qt::yellow,this);
+    QColor colourFill =QColorDialog::getColor(Qt::white,this);
+
+   myPalleteFill.setColor(QPalette::Window,colourFill);
+   ui->cubeColour->setPalette(myPalleteFill);
+
+
+
+
+
+
+
     scene->setFillColour(colourFill);
 }
 
