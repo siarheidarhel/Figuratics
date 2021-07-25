@@ -76,24 +76,41 @@ void MyScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
                  if(saveContainer_.isEmpty()){return;}
 
 
-                 //if(!focusItem()){ this->setFocusItem(this->items().at(myAt));  qDebug()<<items().at(myAt) <<" ---FOCUS IF NO FOCUS"; }
-                // if(this->items().isDetached()){qDebug()<<this->items().isDetached()<<items().isEmpty() <<"IS DETACHED";}
 
-                 QList<QGraphicsItem*> itemStack =this->items(); qDebug()<<itemStack.count()<<" __count";
-                 if(selectedItems().isEmpty()){    event->ignore(); qDebug()<<"IGNORE";  break;                   }//saveContainer_.at(myAt)->setSelected(true);}
-                 QGraphicsItem *temItem=this->selectedItems().first();
+                       if(this->selectedItems().isEmpty()){
+                             if(!items(event->scenePos()).isEmpty()){
+                             figure=items(event->scenePos()).first();
+                             if(event->buttons()==Qt::LeftButton)
+                                {
+                                 figure->setSelected(true);
 
-
-                  auto index=itemStack.indexOf(temItem);
-
-                 figure=this->items().at(index) ; qDebug()<<figure->hasFocus()<<" --Has FOCUS";
-                 figure->setCursor(Qt::ClosedHandCursor);
+                                 figure->setCursor(Qt::ClosedHandCursor);
+                             }}
 
 
-        break;
+                 }
+
+                 else {
+                    figure=this->selectedItems().first();
+
+
+                  //auto index=saveContainer_. indexOf(tempItem);
+
+                 //figure=saveContainer_.at(index) ;
+                // items().first()->setSelected(false);
+                 //figure=items().first();
+                                 figure->setCursor(Qt::ClosedHandCursor);
+
+   }
+
+
+       break;
     }
+
 }
-QGraphicsScene::mousePressEvent(event);
+
+    QGraphicsScene::mousePressEvent(event);
+
 
 
 
@@ -114,7 +131,9 @@ void MyScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 
         case Pencil:savePancil.push_back(&myGroup); break;
         case Text:event->ignore(); /*saveContainer_.push_back(myText); */      qDebug()<<"Text Item Release Ignore";break;
-        case MoveItem: event->ignore();qDebug()<<"Move Item Release Ignore";break;
+        case MoveItem:figure->setSelected(false);
+
+                      event->ignore();qDebug()<<"Move Item Release Ignore";break;
         case Line:  saveContainer_.push_back(figure);qDebug("saveContainer");break;
         case Circle:saveContainer_.push_back(figure);qDebug("saveContainer");break;
         case Triangle:saveContainer_.push_back(figure);qDebug("saveContainer");break;
@@ -212,7 +231,7 @@ void MyScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
    case Points:end_point =event->scenePos();drawPoints();figure->setFocus(); break;
    case Text: break;
    case MoveItem:
-                  if(saveContainer_.isEmpty()){
+         {         if(saveContainer_.isEmpty()){
 
                        QWidget *my = nullptr;
                        QMessageBox::information (my,(""), tr("No OBJECT to move"),  QMessageBox::Ok);
@@ -221,17 +240,22 @@ void MyScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
                        return; }
 
                    else  {
-                         if(selectedItems().isEmpty()){event->ignore(); break;}
+                         if(selectedItems().isEmpty()){event->ignore(); qDebug()<<"MoVE SELECT IGNORE"; return;}
                           else{ QRectF bbox = figure->boundingRect().normalized();
                        figure->setPos(event->scenePos()-bbox.center());}
                       // myText->setPos(event->scenePos()-bbox.center());
-
-
-                   }break;
+                   }
+                }break;
              }
       }
+
 QGraphicsScene::mouseMoveEvent(event);
 }
+
+
+
+
+
 
 //---------------------------------------------------LINE
 

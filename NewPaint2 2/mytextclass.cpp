@@ -45,6 +45,7 @@ void MyTextClass::focusOutEvent(QFocusEvent *event)
 void MyTextClass::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event)
 {
     qDebug()<<Q_FUNC_INFO;
+
     if (textInteractionFlags() == Qt::NoTextInteraction)
             setTextInteractionFlags(Qt::TextEditorInteraction);
 
