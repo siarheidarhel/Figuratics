@@ -14,26 +14,21 @@ class MyTextClass : public QGraphicsTextItem
     QGraphicsTextItem *myTextItem;
     QMessageBox *messBox;
 
-    QColor myColor;
+    QColor myColor=Qt::red;
     QFont myFont;
 
     QPointF myPoint;
-   //QString myItemString_;
 
     const QString warnTextMessage={"No Text object"};
 
 
 public:
      MyTextClass( QGraphicsItem *parent=nullptr);
-
-    virtual ~MyTextClass()=default;
-
-
+     virtual ~MyTextClass()=default;
+     void setTextColor (QColor myTextColour);
 
 
-public:
-//virtual QRectF boundingRect() const override;
-//virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
+
 
 signals:
     void lostFocus(MyTextClass *myText);
@@ -43,20 +38,12 @@ signals:
 
 // QGraphicsItem interface
 protected:
-  QVariant itemChange(GraphicsItemChange change, const QVariant &value) override;
-  void focusOutEvent(QFocusEvent *event) override;
-    void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) override;
+     QVariant itemChange(GraphicsItemChange change, const QVariant &value) override;
+     void focusOutEvent(QFocusEvent *event) override;
+     void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) override;
      void focusInEvent(QFocusEvent *event) override;
 
 
-
-    // QGraphicsItem interface
-//public:
-   // virtual QRectF boundingRect() const override;
-    //virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
-
-//protected:
-    //virtual void focusInEvent(QFocusEvent *event) override;
 
 
 

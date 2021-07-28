@@ -70,7 +70,7 @@ private slots:
 
 
     void on_spinBox_2_valueChanged(int rotate);
-
+   //void TextColourDialog()
 
 
 

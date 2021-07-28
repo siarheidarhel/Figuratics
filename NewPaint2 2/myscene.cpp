@@ -75,6 +75,8 @@ void MyScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
     case MoveItem:
                  if(saveContainer_.isEmpty()){return;}
 
+//                if(items().first()->type()==Text){
+//              if(myText->toPlainText().isEmpty()){emit editorLostFocus(myText);}}
 
 
                        if(this->selectedItems().isEmpty()){
@@ -85,29 +87,18 @@ void MyScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
                                  figure->setSelected(true);
 
                                  figure->setCursor(Qt::ClosedHandCursor);
-                             }}
-
-
+                             }
+                         }
                  }
 
                  else {
                     figure=this->selectedItems().first();
+                    figure->setCursor(Qt::ClosedHandCursor);
 
+                } break;
+            }
 
-                  //auto index=saveContainer_. indexOf(tempItem);
-
-                 //figure=saveContainer_.at(index) ;
-                // items().first()->setSelected(false);
-                 //figure=items().first();
-                                 figure->setCursor(Qt::ClosedHandCursor);
-
-   }
-
-
-       break;
-    }
-
-}
+        }
 
     QGraphicsScene::mousePressEvent(event);
 
@@ -444,7 +435,7 @@ qDebug()<<Q_FUNC_INFO;
 
 if (myText->toPlainText().isEmpty()) {
    this->removeItem(myText);
-    myText->deleteLater();
+   // myText->deleteLater();
     update();
 }
  else{

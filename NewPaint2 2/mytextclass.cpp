@@ -13,7 +13,7 @@ MyTextClass::MyTextClass(QGraphicsItem *parent ):  QGraphicsTextItem(parent)
 
 
  myFont=(QFont("Courier"));
- myColor=Qt::green;
+ myColor=Qt::red;
  this->setDefaultTextColor(myColor);
  this->setFlag(QGraphicsItem::ItemIsSelectable,true);
  this->setFlag ( QGraphicsItem::ItemIsMovable,true);
@@ -26,6 +26,11 @@ MyTextClass::MyTextClass(QGraphicsItem *parent ):  QGraphicsTextItem(parent)
 
 
 
+}
+
+void MyTextClass::setTextColor(QColor myTextColour)
+{
+     myColor=myTextColour;
 }
 
 
