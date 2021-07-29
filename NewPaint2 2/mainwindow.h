@@ -81,6 +81,8 @@ private slots:
 
     void on_moveItemButton_clicked();
 
+    void on_textColour_clicked();
+
 public slots:
     void resetRotation ();
 

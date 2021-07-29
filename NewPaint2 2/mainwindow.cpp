@@ -366,3 +366,22 @@ void MainWindow::on_moveItemButton_clicked()
 
 
 }
+
+void MainWindow::on_textColour_clicked()
+{
+    QColor colourText =QColorDialog::getColor(Qt::white,this);
+    //MyTextClass *temp=qgraphicsitem_cast<MyTextClass*> (selectedIems().first);
+    //myText->setDefaultTextColor(colourText);
+}
+
+
+
+
+
+
+
+
+
+
+
+

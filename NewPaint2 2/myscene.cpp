@@ -75,10 +75,6 @@ void MyScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
     case MoveItem:
                  if(saveContainer_.isEmpty()){return;}
 
-//                if(items().first()->type()==Text){
-//              if(myText->toPlainText().isEmpty()){emit editorLostFocus(myText);}}
-
-
                        if(this->selectedItems().isEmpty()){
                              if(!items(event->scenePos()).isEmpty()){
                              figure=items(event->scenePos()).first();
@@ -87,7 +83,7 @@ void MyScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
                                  figure->setSelected(true);
 
                                  figure->setCursor(Qt::ClosedHandCursor);
-                             }
+                                 }
                          }
                  }
 
@@ -408,9 +404,21 @@ void MyScene::setLineWidth(int lineWidth){
 void MyScene::setFillColour(QColor colourFill){
 
 
-    myBrush.setColor(colourFill);
+
+    if(!items().isEmpty()){
+
+        if(items(/*this->sceneRect()*/).first()->type()==MyTextClass::Type){
+            items(/*this->sceneRect()*/).first()->setSelected(true);
+
+            QGraphicsTextItem *temp=qgraphicsitem_cast<MyTextClass*> (this->selectedItems().first());
+            temp->setDefaultTextColor(colourFill);
+        }
+    }
+
+
+   /* else {*/ myBrush.setColor(colourFill);
     myBrush.setStyle(Qt::SolidPattern);
-    this->update();
+    this->update();//}
 }
 
 //---------------------------------------------------OPACITY
