@@ -406,13 +406,16 @@ void MyScene::setFillColour(QColor colourFill){
 
 
     if(!items().isEmpty()){
+        if(!selectedItems().isEmpty()){
+        auto index=items().indexOf(selectedItems().constFirst());
 
-        if(items(/*this->sceneRect()*/).first()->type()==MyTextClass::Type){
-            items(/*this->sceneRect()*/).first()->setSelected(true);
+        if(items().at(index)->type()==MyTextClass::Type){
+            items().at(index)->setSelected(true);
 
-            QGraphicsTextItem *temp=qgraphicsitem_cast<MyTextClass*> (this->selectedItems().first());
+            QGraphicsTextItem *temp=qgraphicsitem_cast<MyTextClass*> (this->items().at(index));
             temp->setDefaultTextColor(colourFill);
         }
+      }
     }
 
 

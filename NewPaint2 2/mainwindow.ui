@@ -685,11 +685,11 @@ border: 2px solid grey;
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="textButton_5">
+   <widget class="QPushButton" name="selectButton">
     <property name="geometry">
      <rect>
-      <x>930</x>
-      <y>10</y>
+      <x>870</x>
+      <y>320</y>
       <width>77</width>
       <height>32</height>
      </rect>
@@ -700,8 +700,11 @@ border: 2px solid grey;
       <verstretch>0</verstretch>
      </sizepolicy>
     </property>
+    <property name="toolTip">
+     <string>Select Item</string>
+    </property>
     <property name="text">
-     <string/>
+     <string>Select</string>
     </property>
    </widget>
    <widget class="QPushButton" name="eraseButton">
@@ -726,7 +729,7 @@ border: 2px solid grey;
      <string>E</string>
     </property>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>858</x>
@@ -761,11 +764,15 @@ border: 2px solid grey;
      </item>
     </layout>
    </widget>
+   <zorder>textColour</zorder>
+   <zorder>textButton_6</zorder>
+   <zorder>textButton_3</zorder>
+   <zorder>textButton_4</zorder>
+   <zorder>selectButton</zorder>
+   <zorder>eraseButton</zorder>
+   <zorder>layoutWidget</zorder>
    <zorder>graphicsView</zorder>
-   <zorder>horizontalLayoutWidget</zorder>
    <zorder>horizontalLayoutWidget_3</zorder>
-   <zorder>helpWindow</zorder>
-   <zorder>helpLabel</zorder>
    <zorder>layoutWidget</zorder>
    <zorder>gridLayoutWidget</zorder>
   </widget>
