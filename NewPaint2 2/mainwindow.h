@@ -56,32 +56,14 @@ private slots:
     void on_undoButton_clicked();
     void on_colourButton_clicked();
     void on_spinBox_valueChanged(int arg1);
-
     void on_fillColourButton_clicked();
-
     void on_saveButton_clicked();
     void on_openButton_clicked();
-
-
-
-
     void on_textButton_clicked();
-
-
-
     void on_spinBox_2_valueChanged(int rotate);
-   //void TextColourDialog()
-
-
-
-
-
     void on_doubleSpinBox_valueChanged(double figureOpacity);
-
-
     void on_moveItemButton_clicked();
-
-    void on_textColour_clicked();
+    void on_selectButton_clicked();
 
 public slots:
     void resetRotation ();

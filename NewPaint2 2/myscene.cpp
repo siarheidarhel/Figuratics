@@ -80,6 +80,8 @@ void MyScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
                              figure=items(event->scenePos()).first();
                              if(event->buttons()==Qt::LeftButton)
                                 {
+                                 if(figure->flags()!=QGraphicsItem::ItemIsMovable){
+                                 figure->setFlag(QGraphicsItem::ItemIsMovable,true);}
                                  figure->setSelected(true);
 
                                  figure->setCursor(Qt::ClosedHandCursor);
@@ -89,9 +91,21 @@ void MyScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
 
                  else {
                     figure=this->selectedItems().first();
-                    figure->setCursor(Qt::ClosedHandCursor);
+                    figure->setCursor(Qt::ClosedHandCursor);} break;
 
-                } break;
+    case SelectItem:
+                  if(!items().isEmpty())
+                  {
+                      if(!selectedItems().isEmpty()){this->clearSelection();}
+                      if(items(event->scenePos()).isEmpty()){return;}
+                      //if(!items(event->scenePos()).contains(figure))  { event->ignore();}
+                      //if(selectedItems().isEmpty()){event->ignore();}
+                      figure=items(event->scenePos()).first();
+                      figure->setFlag(QGraphicsItem::ItemIsMovable,false);
+                      figure->setSelected(true);
+                  }
+
+        break;
             }
 
         }
@@ -121,6 +135,7 @@ void MyScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
         case MoveItem:figure->setSelected(false);
 
                       event->ignore();qDebug()<<"Move Item Release Ignore";break;
+        case SelectItem: event->ignore(); break;
         case Line:  saveContainer_.push_back(figure);qDebug("saveContainer");break;
         case Circle:saveContainer_.push_back(figure);qDebug("saveContainer");break;
         case Triangle:saveContainer_.push_back(figure);qDebug("saveContainer");break;
@@ -209,13 +224,13 @@ void MyScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
   switch (figureType_) {
 
 
-   case Line:end_point =event->scenePos(); drawLine();figure->setFocus(); break;
-   case Rectangle:end_point =event->scenePos(); drawRect(); figure->setFocus(); break;
-   case Triangle:end_point =event->scenePos(); drawTriangle();figure->setFocus(); break;
+   case Line:end_point =event->scenePos(); drawLine(); break;
+   case Rectangle:end_point =event->scenePos(); drawRect();  break;
+   case Triangle:end_point =event->scenePos(); drawTriangle(); break;
    case Pencil:end_point =event->scenePos(); drawPencile(); break;
 
-   case Circle: end_point =event->scenePos(); drawCircle(); figure->setFocus();  break;
-   case Points:end_point =event->scenePos();drawPoints();figure->setFocus(); break;
+   case Circle: end_point =event->scenePos(); drawCircle();   break;
+   case Points:end_point =event->scenePos();drawPoints(); break;
    case Text: break;
    case MoveItem:
          {         if(saveContainer_.isEmpty()){
@@ -252,7 +267,8 @@ void MyScene::drawLine()
 
             figure = addLine(start_point.x(), start_point.y(),end_point.x(), end_point.y(),QPen(myPen));
             figure->setOpacity(myOpacity);
-            figure->setFlags(QGraphicsItem::ItemIsFocusable| QGraphicsItem::ItemIsMovable|QGraphicsItem::ItemIsSelectable );
+            //figure->setFlags(QGraphicsItem::ItemIsFocusable| QGraphicsItem::ItemIsMovable|QGraphicsItem::ItemIsSelectable );
+            figure->setFlag(QGraphicsItem::ItemIsSelectable,true);
 }
 
 
@@ -271,7 +287,8 @@ void MyScene::drawRect(){
     figure= addRect(rect,QPen(myPen),QBrush(myBrush));
     figure->setRotation(myRotate);
     figure->setOpacity(myOpacity);
-    figure->setFlags(QGraphicsItem::ItemIsFocusable| QGraphicsItem::ItemIsMovable|QGraphicsItem::ItemIsSelectable );
+    //figure->setFlags(QGraphicsItem::ItemIsFocusable| QGraphicsItem::ItemIsMovable|QGraphicsItem::ItemIsSelectable );
+    figure->setFlag(QGraphicsItem::ItemIsSelectable,true);
 
 }
 
@@ -294,7 +311,8 @@ void MyScene::drawTriangle(){
       figure = addPolygon(triangle,QPen(myPen),QBrush(myBrush));
       figure->setRotation(myRotate);
       figure->setOpacity(myOpacity);
-      figure->setFlags(QGraphicsItem::ItemIsFocusable| QGraphicsItem::ItemIsMovable|QGraphicsItem::ItemIsSelectable );
+      //figure->setFlags(QGraphicsItem::ItemIsFocusable| QGraphicsItem::ItemIsMovable|QGraphicsItem::ItemIsSelectable );
+      figure->setFlag(QGraphicsItem::ItemIsSelectable,true);
 
 
 }
@@ -319,7 +337,8 @@ qDebug()<<Q_FUNC_INFO;
     start_point=end_point;
     //myGroup.addToGroup(figure);
     figure->setOpacity(myOpacity);
-    figure->setFlags(QGraphicsItem::ItemIsFocusable| QGraphicsItem::ItemIsMovable|QGraphicsItem::ItemIsSelectable );
+    //figure->setFlags(QGraphicsItem::ItemIsFocusable| QGraphicsItem::ItemIsMovable|QGraphicsItem::ItemIsSelectable );
+    figure->setFlag(QGraphicsItem::ItemIsSelectable,true);
 
 }
 
@@ -333,12 +352,11 @@ void MyScene::drawCircle(){
     figure= addEllipse(start_point.x(), start_point.y(),w, h,QPen(myPen),QBrush(myBrush));
     figure->setRotation(myRotate);
     figure->setOpacity(myOpacity);
-    figure->setFlag(QGraphicsItem::ItemIsFocusable,true);
-    figure->setFlag(QGraphicsItem::ItemIsMovable,true);
+    //figure->setFlag(QGraphicsItem::ItemIsFocusable,true);
+    //figure->setFlag(QGraphicsItem::ItemIsMovable,true);
     figure->setFlag(QGraphicsItem::ItemIsSelectable,true);
-    //figure->setFlags(QGraphicsItem::ItemIsFocusable| QGraphicsItem::ItemIsMovable|QGraphicsItem::ItemIsSelectable );
-    //figure->setSelected(true);
-//    figure->setFocus(Qt::ClickFocus);
+
+
 
 
 }
@@ -347,9 +365,10 @@ void MyScene::drawCircle(){
 void MyScene::drawPoints(){
     if(figure){delete figure;}
 
-    figure = addEllipse(end_point.x(),end_point.y(),4,4,QPen(Qt::black),QBrush("black"));
+    figure = addEllipse(end_point.x(),end_point.y(),4,4,QPen(Qt::black),QBrush(myBrush));
     figure->setOpacity(myOpacity);
-    figure->setFlags(QGraphicsItem::ItemIsFocusable| QGraphicsItem::ItemIsMovable|QGraphicsItem::ItemIsSelectable );
+   // figure->setFlags(QGraphicsItem::ItemIsFocusable| QGraphicsItem::ItemIsMovable|QGraphicsItem::ItemIsSelectable );
+    figure->setFlag(QGraphicsItem::ItemIsSelectable,true);
 }
 
 //---------------------------------------------------UNDO
