@@ -73,33 +73,45 @@ void MyScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
               break;
 
     case MoveItem:
-                 if(saveContainer_.isEmpty()){return;}
+                 if(items().isEmpty()){return;}
 
-                       if(this->selectedItems().isEmpty()){
-                             if(!items(event->scenePos()).isEmpty()){
-                             figure=items(event->scenePos()).first();
-                             if(event->buttons()==Qt::LeftButton)
-                                {
-                                 if(figure->flags()!=QGraphicsItem::ItemIsMovable){
-                                 figure->setFlag(QGraphicsItem::ItemIsMovable,true);}
-                                 figure->setSelected(true);
+                 if(!items().isEmpty()){
+                    if(!selectedItems().isEmpty()){this->clearSelection();}
+                    if(items(event->scenePos()).isEmpty()){return;}
+                    figure=items(event->scenePos()).first();
+                    figure->setFlag(QGraphicsItem::ItemIsMovable,true);
+                    figure->setSelected(true);
+                    figure->setCursor(Qt::ClosedHandCursor);
 
-                                 figure->setCursor(Qt::ClosedHandCursor);
-                                 }
-                         }
-                 }
 
-                 else {
-                    figure=this->selectedItems().first();
-                    figure->setCursor(Qt::ClosedHandCursor);} break;
+                 }break;
+
+
+
+//                       if(this->selectedItems().isEmpty()){
+//                             if(!items(event->scenePos()).isEmpty()){
+//                             figure=items(event->scenePos()).first();
+//                             if(event->buttons()==Qt::LeftButton)
+//                                {
+//                                 if(figure->flags()!=QGraphicsItem::ItemIsMovable){
+//                                 figure->setFlag(QGraphicsItem::ItemIsMovable,true);}
+//                                 figure->setSelected(true);
+
+//                                 figure->setCursor(Qt::ClosedHandCursor);
+//                                 }
+//                         }
+//                 }
+
+//                 else {
+//                    figure=this->selectedItems().first();
+//                    figure->setCursor(Qt::ClosedHandCursor);} break;
 
     case SelectItem:
                   if(!items().isEmpty())
                   {
                       if(!selectedItems().isEmpty()){this->clearSelection();}
                       if(items(event->scenePos()).isEmpty()){return;}
-                      //if(!items(event->scenePos()).contains(figure))  { event->ignore();}
-                      //if(selectedItems().isEmpty()){event->ignore();}
+
                       figure=items(event->scenePos()).first();
                       figure->setFlag(QGraphicsItem::ItemIsMovable,false);
                       figure->setSelected(true);
@@ -160,45 +172,41 @@ void MyScene::keyPressEvent(QKeyEvent *event)
 
      if(figureType_==Text){event->text();  qDebug()<<"Text Input" <<":"<<event->text(); /*QGraphicsScene::keyPressEvent(event);*/}
 
-
-
-
      if(event->key()==Qt::Key_Up ){
 
-            if(myAt<=(saveContainer_.count()-1))
-        {
-                if(myAt==saveContainer_.count()-1){emit myAt=0; qDebug()<< "++"<<myAt<<" <-->"<<saveContainer_.count()-1 ;return;}
+            if(myAt<=(items().count()-1))
+              {
+                 if(myAt==items().count()-1){ myAt=0; qDebug()<< "++"<<myAt<<" <-->"<<items().count() ;
+                     this->clearSelection();
+                      items().at(myAt)->setSelected(true);}
 
-
-                else { emit ++myAt;
-                        for(int i=0; i<saveContainer_.size()-1;++i){saveContainer_.at(i)->setSelected(false);}
-                       // saveContainer_.at(myAt-1)->setSelected(false);
-                       // saveContainer_.at(0)->setSelected(false);
-                        saveContainer_.at(myAt)->setSelected(true);
-                        qDebug()<<"++"<< myAt<<" <-->"<<saveContainer_.count()-1 ;}
+              else { emit ++myAt;
+                        this->clearSelection();
+                        items().at(myAt)->setSelected(true);
+                        qDebug()<<"++"<< myAt<<" <-->"<<items().count() ;}
                 }
-        //}
    }
 
 
+      if(event->key()==Qt::Key_Down ){
 
-           if(event->key()==Qt::Key_Down ){
-
-               if(myAt<=(saveContainer_.count()-1))
-         {
-                    if(myAt==0){emit myAt=(saveContainer_.count()-1); qDebug()<< "--"<<myAt<<" <-->"<<saveContainer_.count()-1 ;return;}
+              if(myAt<=(items().count()-1))
+               {
+                    if(myAt==0){ myAt=(items().count()-1); qDebug()<< "--"<<myAt<<" <-->"<<items().count();
+                        this->clearSelection();
+                         items().at(myAt)->setSelected(true);
+               }
 
 
                else{ emit --myAt;
-                        for(int i=0; i<saveContainer_.size()-1;++i){saveContainer_.at(i)->setSelected(false);}
 
 
-                    saveContainer_.at(myAt+1)->setSelected(false);
-                    saveContainer_.at(myAt)->setSelected(true);
-                    figure=saveContainer_.at(myAt);
+                   this->clearSelection();
 
+                    items().at(myAt)->setSelected(true);
+                    //figure=saveContainer_.at(myAt);
 
-                    qDebug()<< "--"<<myAt<<" <-->"<<saveContainer_.count()-1 ;}
+                    qDebug()<< "--"<<myAt<<" <-->"<<items().count() ;}
          }
     }
 QGraphicsScene::keyPressEvent(event);
@@ -244,9 +252,8 @@ void MyScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
                    else  {
                          if(selectedItems().isEmpty()){event->ignore(); qDebug()<<"MoVE SELECT IGNORE"; return;}
                           else{ QRectF bbox = figure->boundingRect().normalized();
-                       figure->setPos(event->scenePos()-bbox.center());}
-                      // myText->setPos(event->scenePos()-bbox.center());
-                   }
+                                figure->setPos(event->scenePos()-bbox.center());}
+                         }
                 }break;
              }
       }
@@ -267,7 +274,6 @@ void MyScene::drawLine()
 
             figure = addLine(start_point.x(), start_point.y(),end_point.x(), end_point.y(),QPen(myPen));
             figure->setOpacity(myOpacity);
-            //figure->setFlags(QGraphicsItem::ItemIsFocusable| QGraphicsItem::ItemIsMovable|QGraphicsItem::ItemIsSelectable );
             figure->setFlag(QGraphicsItem::ItemIsSelectable,true);
 }
 
@@ -287,7 +293,6 @@ void MyScene::drawRect(){
     figure= addRect(rect,QPen(myPen),QBrush(myBrush));
     figure->setRotation(myRotate);
     figure->setOpacity(myOpacity);
-    //figure->setFlags(QGraphicsItem::ItemIsFocusable| QGraphicsItem::ItemIsMovable|QGraphicsItem::ItemIsSelectable );
     figure->setFlag(QGraphicsItem::ItemIsSelectable,true);
 
 }
@@ -311,7 +316,6 @@ void MyScene::drawTriangle(){
       figure = addPolygon(triangle,QPen(myPen),QBrush(myBrush));
       figure->setRotation(myRotate);
       figure->setOpacity(myOpacity);
-      //figure->setFlags(QGraphicsItem::ItemIsFocusable| QGraphicsItem::ItemIsMovable|QGraphicsItem::ItemIsSelectable );
       figure->setFlag(QGraphicsItem::ItemIsSelectable,true);
 
 
@@ -322,7 +326,6 @@ void MyScene::drawTriangle(){
 void MyScene::clearScene(){
 
     saveContainer_.clear();
-    //textContainer.clear();
      update();
 }
 
@@ -367,37 +370,22 @@ void MyScene::drawPoints(){
 
     figure = addEllipse(end_point.x(),end_point.y(),4,4,QPen(Qt::black),QBrush(myBrush));
     figure->setOpacity(myOpacity);
-   // figure->setFlags(QGraphicsItem::ItemIsFocusable| QGraphicsItem::ItemIsMovable|QGraphicsItem::ItemIsSelectable );
     figure->setFlag(QGraphicsItem::ItemIsSelectable,true);
 }
 
 //---------------------------------------------------UNDO
 void MyScene::undoMethod(){
 
-    if (figureType_!=Text){
+
 
           if( saveContainer_.isEmpty()){
 
-          messBox.setIcon(QMessageBox::Information);
-          messBox.setText(warnMessage);
-          messBox.exec();
-           return;}
+             messBox.setIcon(QMessageBox::Information);
+             messBox.setText(warnMessage);
+             messBox.exec();
+             return;}
 
       this->removeItem(saveContainer_.pop());}
-
-
-//    if(figureType_==Text){
-
-//        if(textContainer.isEmpty()){
-//            messBox.setIcon(QMessageBox::Information);
-//            messBox.setText(warnTextMessage);
-//            messBox.exec();
-//             return;}
-//            this->removeItem(textContainer.pop());}
-
-
-   }
-
 
 
 

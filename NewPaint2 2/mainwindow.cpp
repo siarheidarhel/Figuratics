@@ -78,6 +78,7 @@ void MainWindow::on_lineButton_clicked()
    ui->PencilButton->setDown(false);
    ui->textButton->setDown(false);
    ui->moveItemButton->setDown(false);
+   ui->selectButton->setDown(false);
 
    ui->helpLabel->setHidden(true);
    ui->helpWindow->setHidden(true);
@@ -98,6 +99,7 @@ void MainWindow::on_triangleButton_clicked()
    ui-> PencilButton->setDown(false);
    ui->textButton->setDown(false);
    ui->moveItemButton->setDown(false);
+   ui->selectButton->setDown(false);
 
    ui->helpLabel->setHidden(true);
    ui->helpWindow->setHidden(true);
@@ -121,7 +123,8 @@ void MainWindow::on_rectButton_clicked()
    ui-> pointsButton->setDown(false);
    ui-> PencilButton->setDown(false);
    ui->textButton->setDown(false);
-    ui->moveItemButton->setDown(false);
+   ui->moveItemButton->setDown(false);
+   ui->selectButton->setDown(false);
 
     ui->helpLabel->setHidden(true);
     ui->helpWindow->setHidden(true);
@@ -142,14 +145,15 @@ void MainWindow::on_clearButton_5_clicked()
 void MainWindow::on_PencilButton_clicked()
 {
     this->setCursor(QCursor(Qt::ArrowCursor));
-    ui->lineButton->setDown(false);
+   ui->lineButton->setDown(false);
    ui-> triangleButton->setDown(false);
    ui-> rectButton->setDown(false);
    ui-> circleButton->setDown(false);
    ui-> pointsButton->setDown(false);
    ui-> PencilButton->setDown(true);
    ui->textButton->setDown(false);
-    ui->moveItemButton->setDown(false);
+   ui->moveItemButton->setDown(false);
+   ui->selectButton->setDown(false);
 
     ui->helpLabel->setHidden(true);
     ui->helpWindow->setHidden(true);
@@ -169,7 +173,7 @@ void MainWindow::on_circleButton_clicked()
    ui-> PencilButton->setDown(false);
    ui->textButton->setDown(false);
    ui->moveItemButton->setDown(false);
-
+   ui->selectButton->setDown(false);
 
    ui->helpLabel->setHidden(true);
    ui->helpWindow->setHidden(true);
@@ -190,6 +194,7 @@ void MainWindow::on_pointsButton_clicked()
    ui-> PencilButton->setDown(false);
    ui->textButton->setDown(false);
    ui->moveItemButton->setDown(false);
+    ui->selectButton->setDown(false);
 
    ui->helpLabel->setHidden(true);
    ui->helpWindow->setHidden(true);
@@ -203,6 +208,7 @@ void MainWindow::on_pointsButton_clicked()
 
 void MainWindow::on_undoButton_clicked()
 {
+
     scene->undoMethod();
 
 }
@@ -294,9 +300,9 @@ void MainWindow::on_textButton_clicked()
    ui-> circleButton->setDown(false);
    ui-> pointsButton->setDown(false);
    ui-> PencilButton->setDown(false);
-   ui-> textButton->setDown(false);
+   ui-> textButton->setDown(true);
    ui->moveItemButton->setDown(false);
-
+   ui->selectButton->setDown(false);
 
    ui->helpLabel->setHidden(true);
    ui->helpWindow->setHidden(true);
@@ -356,13 +362,14 @@ void MainWindow::on_moveItemButton_clicked()
         ui-> PencilButton->setDown(false);
         ui-> textButton->setDown(false);
         ui->moveItemButton->setDown(true);
+        ui->selectButton->setDown(false);
 
-          ui->helpLabel->setHidden(false);
+         ui->helpLabel->setHidden(false);
          ui->helpWindow->setHidden(false);
          ui->helpWindow->setEnabled(true);
          ui->helpWindow->setText(myHelpMove);
 
-      scene->setFigureType(MoveItem);
+        scene->setFigureType(MoveItem);
 
 
 }
@@ -374,6 +381,16 @@ void MainWindow::on_moveItemButton_clicked()
 
 void MainWindow::on_selectButton_clicked()
 {
+    ui-> lineButton->setDown(false);
+    ui-> triangleButton->setDown(false);
+    ui-> rectButton->setDown(false);
+    ui-> circleButton->setDown(false);
+    ui-> pointsButton->setDown(false);
+    ui-> PencilButton->setDown(false);
+    ui-> textButton->setDown(false);
+    ui->moveItemButton->setDown(false);
+    ui->selectButton->setDown(true);
+
     scene->setFigureType(SelectItem);
 }
 
