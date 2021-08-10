@@ -470,46 +470,17 @@ if(scene->items().isEmpty()){return;}
             {
 
              QGraphicsTextItem *myTempItem= qgraphicsitem_cast<MyTextClass*> (scene->items().at(i));
-             //myTempItem->toPlainText();
-             nameItemsFigure[i]<< "Text "+ myTempItem->toPlainText();
+
+             nameItemsFigure[i]<< "TEXT: "+ myTempItem->toPlainText();
 
                ui->listWiItemsShow->addItems(nameItemsFigure[i]);
-               //delete myTempItem;
+
             }
 
          //3 Rect; 5 Triangle;  6 Line; 4 Dots; 8 Text;
      }
-   // auto index =myListWiget.currentIndex().data().toChar();
-   // index.toInt();
-
-   // QGraphicsItem *itemPlus=scene->items().at(index.toInt());
-    // ui->listWiItemsShow->show();
-     //ui->listWiItemsShow->activateWindow();
-    // ui->listWiItemsShow->raise();
-
-     //this->SelectItemThruList();
 
 }
-
-
-//void MainWindow::SelectItemThruList()
-//{
-//if(myListWiget.currentRow() ==-1){return;}
-//    while (!scene->items().isEmpty()){
-
-//        int index =myListWiget.currentRow();
-//        scene->items().at(index)->setSelected(true);
-
-//    }
-
-//}
-
-
-
-
-
-
-
 
 
 
