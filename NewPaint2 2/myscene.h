@@ -17,6 +17,7 @@
 #include <QGraphicsTextItem>
 #include<figuretype.h>
 #include <mytextclass.h>
+#include<QListWidget>
 
 
 
@@ -51,6 +52,8 @@ class MyScene : public QGraphicsScene
 
 
     QString fileName = "testMyfile.png";
+//    QListWidget *myListWiget;
+//    QWidget *myTempWidget;
 
 
 
@@ -104,6 +107,7 @@ public slots:
 signals:
         void itemSelected (QGraphicsItem *item);
         void myReset();
+        void signalListWidget();
 
 
 

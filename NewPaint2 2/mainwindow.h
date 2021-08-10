@@ -10,6 +10,7 @@
 #include <QGraphicsLineItem>
 #include <QString>
 #include <figuretype.h>
+#include<QListWidget>
 //#include <mytextclass.h>
 
 
@@ -32,6 +33,16 @@ class MainWindow : public QMainWindow
     //QBrush myBack=( Qt::red);
     QPalette myPalleteFill;
     QPalette myPalleteBorders;
+
+
+
+
+    //QListWidget myListWiget;
+    //QWidget myTempWidget;
+
+
+
+
 
 public:
     explicit MainWindow(QWidget *parent = nullptr);
@@ -64,6 +75,13 @@ private slots:
     void on_doubleSpinBox_valueChanged(double figureOpacity);
     void on_moveItemButton_clicked();
     void on_selectButton_clicked();
+
+    //void SelectItemThruList();
+
+
+    void onList();
+
+    void on_listWiItemsShow_itemClicked(QListWidgetItem *item);
 
 public slots:
     void resetRotation ();

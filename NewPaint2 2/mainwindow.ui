@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1086</width>
+    <width>1139</width>
     <height>713</height>
    </rect>
   </property>
@@ -23,9 +23,9 @@
    <widget class="QGraphicsView" name="graphicsView">
     <property name="geometry">
      <rect>
-      <x>110</x>
+      <x>100</x>
       <y>40</y>
-      <width>741</width>
+      <width>751</width>
       <height>581</height>
      </rect>
     </property>
@@ -255,8 +255,8 @@ border: 2px solid grey;
      <rect>
       <x>10</x>
       <y>40</y>
-      <width>71</width>
-      <height>571</height>
+      <width>84</width>
+      <height>581</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout">
@@ -363,7 +363,7 @@ border: 2px solid grey;
      <item row="9" column="0">
       <widget class="QPushButton" name="selectButton">
        <property name="sizePolicy">
-        <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
@@ -625,30 +625,11 @@ border: 2px solid grey;
      </item>
     </layout>
    </widget>
-   <widget class="QPushButton" name="textColour">
-    <property name="geometry">
-     <rect>
-      <x>910</x>
-      <y>190</y>
-      <width>108</width>
-      <height>32</height>
-     </rect>
-    </property>
-    <property name="sizePolicy">
-     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-      <horstretch>0</horstretch>
-      <verstretch>0</verstretch>
-     </sizepolicy>
-    </property>
-    <property name="text">
-     <string>Text Colour</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="textButton_6">
     <property name="geometry">
      <rect>
-      <x>930</x>
-      <y>150</y>
+      <x>970</x>
+      <y>140</y>
       <width>77</width>
       <height>32</height>
      </rect>
@@ -660,15 +641,15 @@ border: 2px solid grey;
      </sizepolicy>
     </property>
     <property name="text">
-     <string/>
+     <string>Zoom In</string>
     </property>
    </widget>
    <widget class="QPushButton" name="textButton_3">
     <property name="geometry">
      <rect>
-      <x>930</x>
-      <y>40</y>
-      <width>77</width>
+      <x>980</x>
+      <y>30</y>
+      <width>91</width>
       <height>32</height>
      </rect>
     </property>
@@ -679,15 +660,15 @@ border: 2px solid grey;
      </sizepolicy>
     </property>
     <property name="text">
-     <string/>
+     <string>Put Infront</string>
     </property>
    </widget>
    <widget class="QPushButton" name="textButton_4">
     <property name="geometry">
      <rect>
-      <x>930</x>
-      <y>70</y>
-      <width>77</width>
+      <x>970</x>
+      <y>60</y>
+      <width>91</width>
       <height>32</height>
      </rect>
     </property>
@@ -698,14 +679,14 @@ border: 2px solid grey;
      </sizepolicy>
     </property>
     <property name="text">
-     <string/>
+     <string>Zoom Out</string>
     </property>
    </widget>
    <widget class="QPushButton" name="eraseButton">
     <property name="geometry">
      <rect>
-      <x>930</x>
-      <y>110</y>
+      <x>970</x>
+      <y>100</y>
       <width>81</width>
       <height>32</height>
      </rect>
@@ -723,16 +704,39 @@ border: 2px solid grey;
      <string>E</string>
     </property>
    </widget>
-   <widget class="QWidget" name="layoutWidget">
+   <widget class="QWidget" name="">
     <property name="geometry">
      <rect>
-      <x>858</x>
-      <y>448</y>
-      <width>211</width>
-      <height>171</height>
+      <x>859</x>
+      <y>230</y>
+      <width>258</width>
+      <height>444</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QLabel" name="helpLabel_2">
+       <property name="toolTip">
+        <string>Some helpfull tips</string>
+       </property>
+       <property name="text">
+        <string>List of Objects:</string>
+       </property>
+       <property name="textInteractionFlags">
+        <set>Qt::NoTextInteraction</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QListWidget" name="listWiItemsShow">
+       <property name="viewMode">
+        <enum>QListView::ListMode</enum>
+       </property>
+       <property name="modelColumn">
+        <number>0</number>
+       </property>
+      </widget>
+     </item>
      <item>
       <widget class="QLabel" name="helpLabel">
        <property name="toolTip">
@@ -758,7 +762,6 @@ border: 2px solid grey;
      </item>
     </layout>
    </widget>
-   <zorder>textColour</zorder>
    <zorder>textButton_6</zorder>
    <zorder>textButton_3</zorder>
    <zorder>textButton_4</zorder>
@@ -768,13 +771,15 @@ border: 2px solid grey;
    <zorder>horizontalLayoutWidget_3</zorder>
    <zorder>layoutWidget</zorder>
    <zorder>gridLayoutWidget</zorder>
+   <zorder>listWiItemsShow</zorder>
+   <zorder>helpLabel_2</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1086</width>
+     <width>1139</width>
      <height>24</height>
     </rect>
    </property>

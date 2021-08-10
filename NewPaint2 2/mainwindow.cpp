@@ -14,6 +14,7 @@
 #include <figuretype.h>
 #include<mytextclass.h>
 #include <QStyleOptionGraphicsItem>
+#include <QListWidget>
 
 #include <QFileDialog>
 
@@ -42,9 +43,22 @@ MainWindow::MainWindow(QWidget *parent)
       ui->cubeColour_2->setPalette(myPalleteBorders);
 
 
+      //_________
+      // myTempWidget=new QWidget;
+      // myListWiget = new QListWidget(myTempWidget);
+       //myListWiget.show();
+//      myListWiget.activateWindow();
+//      myListWiget.raise();
 
 
-connect(scene, SIGNAL(myReset()), this, SLOT(resetRotation()));qDebug()<<"slot myReset-resetRotation";
+
+
+      //______
+
+
+
+//connect(scene, SIGNAL(myReset()), this, SLOT(resetRotation()));qDebug()<<"slot myReset-resetRotation";
+connect(scene,SIGNAL(signalListWidget()),this, SLOT(onList()));
 
 
       //ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -399,6 +413,122 @@ void MainWindow::on_selectButton_clicked()
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+void MainWindow::onList()
+{
+    qDebug()<< Q_FUNC_INFO;
+if(scene->items().isEmpty()){return;}
+
+    QList<QString> nameItemsFigure[scene->items().count()];
+    nameItemsFigure->clear();
+    ui->listWiItemsShow->clear();
+    for(int i=0; i<=scene->items().count()-1;++i){
+
+         if(scene->items().at(i)->type()==4)
+            {
+               nameItemsFigure[i]<< "Circle";
+
+               ui->listWiItemsShow->addItems(nameItemsFigure[i]);
+
+            }
+
+         if(scene->items().at(i)->type()==3)
+            {
+               nameItemsFigure[i]<< "Rectangle";
+
+               ui->listWiItemsShow->addItems(nameItemsFigure[i]);
+
+            }
+
+         if(scene->items().at(i)->type()==5)
+            {
+               nameItemsFigure[i]<< "Triangle";
+
+               ui->listWiItemsShow->addItems(nameItemsFigure[i]);
+
+            }
+
+         if(scene->items().at(i)->type()==6)
+            {
+               nameItemsFigure[i]<< "Line";
+
+               ui->listWiItemsShow->addItems(nameItemsFigure[i]);
+
+            }
+
+         if(scene->items().at(i)->type()==8)
+            {
+
+             QGraphicsTextItem *myTempItem= qgraphicsitem_cast<MyTextClass*> (scene->items().at(i));
+             //myTempItem->toPlainText();
+             nameItemsFigure[i]<< "Text "+ myTempItem->toPlainText();
+
+               ui->listWiItemsShow->addItems(nameItemsFigure[i]);
+               //delete myTempItem;
+            }
+
+         //3 Rect; 5 Triangle;  6 Line; 4 Dots; 8 Text;
+     }
+   // auto index =myListWiget.currentIndex().data().toChar();
+   // index.toInt();
+
+   // QGraphicsItem *itemPlus=scene->items().at(index.toInt());
+    // ui->listWiItemsShow->show();
+     //ui->listWiItemsShow->activateWindow();
+    // ui->listWiItemsShow->raise();
+
+     //this->SelectItemThruList();
+
+}
+
+
+//void MainWindow::SelectItemThruList()
+//{
+//if(myListWiget.currentRow() ==-1){return;}
+//    while (!scene->items().isEmpty()){
+
+//        int index =myListWiget.currentRow();
+//        scene->items().at(index)->setSelected(true);
+
+//    }
+
+//}
+
+
+
+
+
+
+
+
+
+
+
+void MainWindow::on_listWiItemsShow_itemClicked(QListWidgetItem *item)
+{
+    Q_UNUSED(item)
+    if(!scene->items().isEmpty())
+    {
+      scene->clearSelection();
+      int index=ui->listWiItemsShow->currentRow();
+
+      scene->items().at(index)->setSelected(true);
+    }
+
+
+
+
+}
 
 
 

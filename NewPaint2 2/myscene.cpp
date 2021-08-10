@@ -70,6 +70,7 @@ void MyScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
 
               figure->setPos(event->scenePos());
               update();
+                 // emit signalListWidget();
               break;
 
     case MoveItem:
@@ -112,7 +113,7 @@ void MyScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
                       if(!selectedItems().isEmpty()){this->clearSelection();}
                       if(items(event->scenePos()).isEmpty()){return;}
 
-                      figure=items(event->scenePos()).first();
+                      figure=items(event->scenePos()).first(); qDebug()<<items(event->scenePos()).first()->type();
                       figure->setFlag(QGraphicsItem::ItemIsMovable,false);
                       figure->setSelected(true);
                   }
@@ -121,6 +122,7 @@ void MyScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
             }
 
         }
+
 
     QGraphicsScene::mousePressEvent(event);
 
@@ -145,11 +147,13 @@ void MyScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
         case Pencil:savePancil.push_back(&myGroup); break;
         case Text:event->ignore(); /*saveContainer_.push_back(myText); */      qDebug()<<"Text Item Release Ignore";break;
         case MoveItem:figure->setSelected(false);
-
                       event->ignore();qDebug()<<"Move Item Release Ignore";break;
+
         case SelectItem: event->ignore(); break;
         case Line:  saveContainer_.push_back(figure);qDebug("saveContainer");break;
-        case Circle:saveContainer_.push_back(figure);qDebug("saveContainer");break;
+        case Circle: saveContainer_.push_back(figure);qDebug("saveContainer");break;
+
+
         case Triangle:saveContainer_.push_back(figure);qDebug("saveContainer");break;
         case  Rectangle:saveContainer_.push_back(figure);qDebug("saveContainer");break;
         case  Points:saveContainer_.push_back(figure);qDebug("saveContainer");break;
@@ -232,12 +236,12 @@ void MyScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
   switch (figureType_) {
 
 
-   case Line:end_point =event->scenePos(); drawLine(); break;
-   case Rectangle:end_point =event->scenePos(); drawRect();  break;
-   case Triangle:end_point =event->scenePos(); drawTriangle(); break;
+   case Line:end_point =event->scenePos(); drawLine();emit signalListWidget(); break;
+   case Rectangle:end_point =event->scenePos(); drawRect();emit signalListWidget();  break;
+   case Triangle:end_point =event->scenePos(); drawTriangle();emit signalListWidget(); break;
    case Pencil:end_point =event->scenePos(); drawPencile(); break;
-
-   case Circle: end_point =event->scenePos(); drawCircle();   break;
+   case SelectItem: event->ignore(); break;
+   case Circle: end_point =event->scenePos(); drawCircle(); emit signalListWidget();  break;
    case Points:end_point =event->scenePos();drawPoints(); break;
    case Text: break;
    case MoveItem:
@@ -454,6 +458,8 @@ qDebug()<<Q_FUNC_INFO;
 if (myText->toPlainText().isEmpty()) {
    this->removeItem(myText);
    // myText->deleteLater();
+    emit signalListWidget();
+
     update();
 }
  else{
@@ -461,10 +467,7 @@ if (myText->toPlainText().isEmpty()) {
         QTextCursor cursor = myText->textCursor();
         cursor.clearSelection();
        myText->setTextCursor(cursor);
-//       myText->setFocus(Qt::MouseFocusReason);
-
-       //figure=myText;
-      // saveContainer_.push_back(figure); qDebug()<<saveContainer_.last()<< "FIGURE--"<<figure <<"Text to save";
+       emit signalListWidget();
 
    }
 
