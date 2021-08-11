@@ -481,24 +481,23 @@ if (myText->toPlainText().isEmpty()) {
 void MyScene::rotationFigure(int rotate)
 {
    emit myRotate=rotate;
-   if(saveContainer_.isEmpty()){return;}
- //if(figure==nullptr){return;}
-   figure=saveContainer_.at(myAt);
-  this->setFocusItem(figure);
-     //figure=focusItem();
+   //if(saveContainer_.isEmpty()){return;}
 
+    if(!this->items().isEmpty()){
+       if(this->selectedItems().isEmpty()){this->items().first()->setSelected(true);}
+   figure=selectedItems().first();
 
    QRectF bbox = figure->boundingRect().normalized();
-     QPointF center = bbox.center();
+   QPointF center = bbox.center();
      figure->setTransformOriginPoint(center);
 
    figure->setRotation(myRotate);
-   //saveContainer_.push_front(figure);
+
    figure=nullptr;
 
    myRotate=0;
    update();
-
+}
 }
 
 

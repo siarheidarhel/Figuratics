@@ -331,33 +331,19 @@ void MainWindow::on_textButton_clicked()
 void MainWindow::on_spinBox_2_valueChanged(int rotate)
 {
     this->setCursor(QCursor(Qt::ArrowCursor));
+
     scene->rotationFigure(rotate);
     //connect(scene, SIGNAL(&MyScene::rotationFigure), this,SLOT(MainWindow::resetRotation()));qDebug()<<"slot";
 
 }
 
-void MainWindow::resetRotation()
-{
-    ui->spinBox_2->setValue(0);
-}
-
-
-
-
-//void MainWindow::on_editText_clicked()
+//void MainWindow::resetRotation()
 //{
-//    this->setCursor(QCursor(Qt::IBeamCursor));
-//    ui-> lineButton->setDown(false);
-//    ui-> triangleButton->setDown(false);
-//    ui-> rectButton->setDown(false);
-//    ui-> circleButton->setDown(false);
-//    ui-> pointsButton->setDown(false);
-//    ui-> PencilButton->setDown(false);
-//    ui-> textButton->setDown(false);
-//    ui->editText->setDown(true);
-   // scene->setFigureType(Text);
-
+//    ui->spinBox_2->setValue(0);
 //}
+
+
+
 
 void MainWindow::on_doubleSpinBox_valueChanged(double figureOpacity)
 {

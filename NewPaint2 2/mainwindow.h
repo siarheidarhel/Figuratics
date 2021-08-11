@@ -84,7 +84,7 @@ private slots:
     void on_listWiItemsShow_itemClicked(QListWidgetItem *item);
 
 public slots:
-    void resetRotation ();
+   // void resetRotation ();
 
 };
 
