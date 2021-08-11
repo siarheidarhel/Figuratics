@@ -82,30 +82,9 @@ void MyScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
                     figure=items(event->scenePos()).first();
                     figure->setFlag(QGraphicsItem::ItemIsMovable,true);
                     figure->setSelected(true);
-                    figure->setCursor(Qt::ClosedHandCursor);
+                    figure->setCursor(Qt::ClosedHandCursor);}break;
 
 
-                 }break;
-
-
-
-//                       if(this->selectedItems().isEmpty()){
-//                             if(!items(event->scenePos()).isEmpty()){
-//                             figure=items(event->scenePos()).first();
-//                             if(event->buttons()==Qt::LeftButton)
-//                                {
-//                                 if(figure->flags()!=QGraphicsItem::ItemIsMovable){
-//                                 figure->setFlag(QGraphicsItem::ItemIsMovable,true);}
-//                                 figure->setSelected(true);
-
-//                                 figure->setCursor(Qt::ClosedHandCursor);
-//                                 }
-//                         }
-//                 }
-
-//                 else {
-//                    figure=this->selectedItems().first();
-//                    figure->setCursor(Qt::ClosedHandCursor);} break;
 
     case SelectItem:
                   if(!items().isEmpty())
@@ -115,13 +94,22 @@ void MyScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
 
                       figure=items(event->scenePos()).first(); qDebug()<<items(event->scenePos()).first()->type();
                       figure->setFlag(QGraphicsItem::ItemIsMovable,false);
-                      figure->setSelected(true);
-                  }
+                      figure->setSelected(true);} break;
 
-        break;
-            }
+     //case Rotation:
 
-        }
+     //case ScaleFigure:
+     //case FontCnaghe:
+
+
+
+
+
+
+
+    }//---switch
+
+ }
 
 
     QGraphicsScene::mousePressEvent(event);
@@ -425,6 +413,12 @@ void MyScene::setFillColour(QColor colourFill){
 
             QGraphicsTextItem *temp=qgraphicsitem_cast<MyTextClass*> (this->items().at(index));
             temp->setDefaultTextColor(colourFill);
+        }
+
+       if (items().at(index)->type()==4){
+
+                QGraphicsEllipseItem *temp1 =qgraphicsitem_cast<QGraphicsEllipseItem*> (this->items().at(index));
+                temp1-> setBrush(QBrush(colourFill))  ;
         }
       }
     }
