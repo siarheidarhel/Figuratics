@@ -50,6 +50,9 @@ class MyScene : public QGraphicsScene
 
     int myAt=0;
 
+    int myChangeZValue=1;
+    int myStrartZValue=1;
+
 
     QString fileName = "testMyfile.png";
 //    QListWidget *myListWiget;
@@ -98,6 +101,9 @@ public:
         void scaleFigure (int scale);
 
         void myOpacityFunc(float opacity);
+
+        void bringToFront();
+        void bringToBack();
 
 public slots:
         void editorLostFocus(MyTextClass *myText);

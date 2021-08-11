@@ -266,6 +266,7 @@ void MyScene::drawLine()
 
             figure = addLine(start_point.x(), start_point.y(),end_point.x(), end_point.y(),QPen(myPen));
             figure->setOpacity(myOpacity);
+            figure->setZValue(myStrartZValue);
             figure->setFlag(QGraphicsItem::ItemIsSelectable,true);
 }
 
@@ -285,6 +286,7 @@ void MyScene::drawRect(){
     figure= addRect(rect,QPen(myPen),QBrush(myBrush));
     figure->setRotation(myRotate);
     figure->setOpacity(myOpacity);
+    figure->setZValue(myStrartZValue);
     figure->setFlag(QGraphicsItem::ItemIsSelectable,true);
 
 }
@@ -308,6 +310,7 @@ void MyScene::drawTriangle(){
       figure = addPolygon(triangle,QPen(myPen),QBrush(myBrush));
       figure->setRotation(myRotate);
       figure->setOpacity(myOpacity);
+      figure->setZValue(myStrartZValue);
       figure->setFlag(QGraphicsItem::ItemIsSelectable,true);
 
 
@@ -318,6 +321,8 @@ void MyScene::drawTriangle(){
 void MyScene::clearScene(){
 
     saveContainer_.clear();
+    this->clear();
+    emit signalListWidget();
      update();
 }
 
@@ -347,6 +352,7 @@ void MyScene::drawCircle(){
     figure= addEllipse(start_point.x(), start_point.y(),w, h,QPen(myPen),QBrush(myBrush));
     figure->setRotation(myRotate);
     figure->setOpacity(myOpacity);
+    figure->setZValue(myStrartZValue);
     //figure->setFlag(QGraphicsItem::ItemIsFocusable,true);
     //figure->setFlag(QGraphicsItem::ItemIsMovable,true);
     figure->setFlag(QGraphicsItem::ItemIsSelectable,true);
@@ -370,19 +376,22 @@ void MyScene::undoMethod(){
 
 
 
-          if( saveContainer_.isEmpty()){
+          if( this->items().isEmpty()){
 
              messBox.setIcon(QMessageBox::Information);
              messBox.setText(warnMessage);
              messBox.exec();
              return;}
 
-      this->removeItem(saveContainer_.pop());}
+      this->removeItem(saveContainer_.pop());
+      emit signalListWidget();
+
+}
 
 
 
 
-//---------------------------------------------------COLOUR
+//---------------------------------------------------LINE_COLOUR
 
 void MyScene::colourDial(QColor colour){
 
@@ -415,18 +424,34 @@ void MyScene::setFillColour(QColor colourFill){
             temp->setDefaultTextColor(colourFill);
         }
 
-       if (items().at(index)->type()==4){
+       if (items().at(index)->type()==4)
+          {
 
                 QGraphicsEllipseItem *temp1 =qgraphicsitem_cast<QGraphicsEllipseItem*> (this->items().at(index));
                 temp1-> setBrush(QBrush(colourFill))  ;
-        }
-      }
+          }
+
+       if (items().at(index)->type()==3)
+          {
+
+                QGraphicsRectItem *temp1 =qgraphicsitem_cast<QGraphicsRectItem*> (this->items().at(index));
+                temp1-> setBrush(QBrush(colourFill))  ;
+          }
+
+       if (items().at(index)->type()==5)
+          {
+
+                QGraphicsPolygonItem *temp1 =qgraphicsitem_cast<QGraphicsPolygonItem*> (this->items().at(index));
+                temp1-> setBrush(QBrush(colourFill))  ;
+          }
+
     }
+  }
 
 
-   /* else {*/ myBrush.setColor(colourFill);
+    myBrush.setColor(colourFill);
     myBrush.setStyle(Qt::SolidPattern);
-    this->update();//}
+    this->update();
 }
 
 //---------------------------------------------------OPACITY
@@ -440,6 +465,22 @@ void MyScene::myOpacityFunc(float opacity)
    figure=nullptr;
 
    this->update();
+}
+
+
+//---------------------------------------------------BRING_TO_FRONT
+void MyScene::bringToFront()
+{
+    if(!items().isEmpty() & !selectedItems().isEmpty())
+   {
+    qDebug()<< Q_FUNC_INFO;
+    ++myChangeZValue;
+
+    figure=this->selectedItems().first();
+    figure->setZValue(myChangeZValue);
+    emit signalListWidget();
+
+   }
 }
 
 

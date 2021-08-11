@@ -628,8 +628,8 @@ border: 2px solid grey;
    <widget class="QPushButton" name="textButton_6">
     <property name="geometry">
      <rect>
-      <x>970</x>
-      <y>140</y>
+      <x>1030</x>
+      <y>180</y>
       <width>77</width>
       <height>32</height>
      </rect>
@@ -644,12 +644,12 @@ border: 2px solid grey;
      <string>Zoom In</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="textButton_3">
+   <widget class="QPushButton" name="bringToFront">
     <property name="geometry">
      <rect>
-      <x>980</x>
+      <x>870</x>
       <y>30</y>
-      <width>91</width>
+      <width>111</width>
       <height>32</height>
      </rect>
     </property>
@@ -660,14 +660,14 @@ border: 2px solid grey;
      </sizepolicy>
     </property>
     <property name="text">
-     <string>Put Infront</string>
+     <string>Bring front</string>
     </property>
    </widget>
    <widget class="QPushButton" name="textButton_4">
     <property name="geometry">
      <rect>
-      <x>970</x>
-      <y>60</y>
+      <x>930</x>
+      <y>180</y>
       <width>91</width>
       <height>32</height>
      </rect>
@@ -685,8 +685,8 @@ border: 2px solid grey;
    <widget class="QPushButton" name="eraseButton">
     <property name="geometry">
      <rect>
-      <x>970</x>
-      <y>100</y>
+      <x>980</x>
+      <y>150</y>
       <width>81</width>
       <height>32</height>
      </rect>
@@ -702,6 +702,25 @@ border: 2px solid grey;
     </property>
     <property name="shortcut">
      <string>E</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="textButton_5">
+    <property name="geometry">
+     <rect>
+      <x>870</x>
+      <y>70</y>
+      <width>111</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="text">
+     <string>Bring back</string>
     </property>
    </widget>
    <widget class="QWidget" name="">
@@ -752,6 +771,12 @@ border: 2px solid grey;
      </item>
      <item>
       <widget class="QTextEdit" name="helpWindow">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <property name="textInteractionFlags">
         <set>Qt::NoTextInteraction</set>
        </property>
@@ -763,7 +788,7 @@ border: 2px solid grey;
     </layout>
    </widget>
    <zorder>textButton_6</zorder>
-   <zorder>textButton_3</zorder>
+   <zorder>bringToFront</zorder>
    <zorder>textButton_4</zorder>
    <zorder>eraseButton</zorder>
    <zorder>layoutWidget</zorder>
@@ -773,6 +798,7 @@ border: 2px solid grey;
    <zorder>gridLayoutWidget</zorder>
    <zorder>listWiItemsShow</zorder>
    <zorder>helpLabel_2</zorder>
+   <zorder>textButton_5</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

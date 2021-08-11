@@ -83,6 +83,10 @@ private slots:
 
     void on_listWiItemsShow_itemClicked(QListWidgetItem *item);
 
+
+
+    void on_bringToFront_clicked();
+
 public slots:
    // void resetRotation ();
 

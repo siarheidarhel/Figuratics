@@ -413,7 +413,7 @@ void MainWindow::on_selectButton_clicked()
 void MainWindow::onList()
 {
     qDebug()<< Q_FUNC_INFO;
-if(scene->items().isEmpty()){return;}
+if(scene->items().isEmpty()){ui->listWiItemsShow->clear(); return;}
 
     QList<QString> nameItemsFigure[scene->items().count()];
     nameItemsFigure->clear();
@@ -483,8 +483,6 @@ void MainWindow::on_listWiItemsShow_itemClicked(QListWidgetItem *item)
     }
 
 
-
-
 }
 
 
@@ -494,3 +492,8 @@ void MainWindow::on_listWiItemsShow_itemClicked(QListWidgetItem *item)
 
 
 
+
+void MainWindow::on_bringToFront_clicked()
+{
+    scene->bringToFront();
+}
