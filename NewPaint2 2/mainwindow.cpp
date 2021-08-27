@@ -28,8 +28,10 @@ MainWindow::MainWindow(QWidget *parent)
       scene = new MyScene(this);
       ui->graphicsView->setFixedSize (700,740);
       ui->graphicsView->setScene(scene);
+
       ui->spinBox_2->setValue(0);
       setWindowTitle(windowTitle);
+
       ui->helpWindow->setHidden(true);
       ui->helpLabel->setHidden(true);
 
@@ -43,17 +45,6 @@ MainWindow::MainWindow(QWidget *parent)
       ui->cubeColour_2->setPalette(myPalleteBorders);
 
 
-      //_________
-      // myTempWidget=new QWidget;
-      // myListWiget = new QListWidget(myTempWidget);
-       //myListWiget.show();
-//      myListWiget.activateWindow();
-//      myListWiget.raise();
-
-
-
-
-      //______
 
 
 
@@ -496,4 +487,9 @@ void MainWindow::on_listWiItemsShow_itemClicked(QListWidgetItem *item)
 void MainWindow::on_bringToFront_clicked()
 {
     scene->bringToFront();
+}
+
+void MainWindow::on_bringToBack_clicked()
+{
+    scene->bringToBack();
 }

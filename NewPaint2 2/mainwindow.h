@@ -87,6 +87,8 @@ private slots:
 
     void on_bringToFront_clicked();
 
+    void on_bringToBack_clicked();
+
 public slots:
    // void resetRotation ();
 

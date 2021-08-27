@@ -52,7 +52,7 @@ void MyScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
 
     switch (figureType_) {
 
-   //case Line| Circle| Rectangle | Triangle| Pencil | Points: break;;qDebug("mouse press") ;
+   //case Line| Circle| Rectangle | Triangle| Pencil | Points: break;
     case Text:
               myText=new MyTextClass();
               myText->setTextInteractionFlags(Qt::TextEditorInteraction);
@@ -62,15 +62,13 @@ void MyScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
 
               connect(myText, &MyTextClass::selectedChange,this, &MyScene::itemSelected);
 
-             // this->addItem(myText);
-
               figure=myText;
               this->addItem(figure);
               saveContainer_.push_back(figure);
 
               figure->setPos(event->scenePos());
               update();
-                 // emit signalListWidget();
+
               break;
 
     case MoveItem:
@@ -278,9 +276,9 @@ void MyScene::drawRect(){
 
 
  QRectF rect ( end_point.x() > start_point.x() ?  start_point.x() : end_point.x(),
-                    end_point.y() > start_point.y() ? start_point.y() : end_point.y(),
-                    qAbs(end_point.x() - start_point.x()),
-                    qAbs(end_point.y() - start_point.y()));
+               end_point.y() > start_point.y() ? start_point.y() : end_point.y(),
+               qAbs(end_point.x() - start_point.x()),
+               qAbs(end_point.y() - start_point.y()));
 
 
     figure= addRect(rect,QPen(myPen),QBrush(myBrush));
@@ -474,14 +472,40 @@ void MyScene::bringToFront()
     if(!items().isEmpty() & !selectedItems().isEmpty())
    {
     qDebug()<< Q_FUNC_INFO;
-    ++myChangeZValue;
+
 
     figure=this->selectedItems().first();
-    figure->setZValue(myChangeZValue);
+    figure->setZValue(figure->zValue()+1);qDebug()<<figure->zValue();
     emit signalListWidget();
 
-   }
+    }
+
 }
+
+void MyScene::bringToBack()
+{
+
+
+    qDebug()<< Q_FUNC_INFO;
+
+    if(!items().isEmpty() & !selectedItems().isEmpty())
+   {
+
+
+    figure=this->selectedItems().first();
+
+    figure->setZValue(figure->zValue()-1);qDebug()<<figure->zValue();
+    emit signalListWidget();
+
+    }
+
+
+
+}
+
+
+
+
 
 
 //---------------------------------------------------EDITOR_LOST_FOCUS

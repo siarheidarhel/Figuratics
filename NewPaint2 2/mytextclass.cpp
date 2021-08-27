@@ -28,10 +28,10 @@ MyTextClass::MyTextClass(QGraphicsItem *parent ):  QGraphicsTextItem(parent)
 
 }
 
-void MyTextClass::setTextColor(QColor myTextColour)
-{
-     myColor=myTextColour;
-}
+//void MyTextClass::setTextColor(QColor myTextColour)
+//{
+//     myColor=myTextColour;
+//}
 
 
 

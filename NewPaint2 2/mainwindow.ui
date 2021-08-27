@@ -704,7 +704,7 @@ border: 2px solid grey;
      <string>E</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="textButton_5">
+   <widget class="QPushButton" name="bringToBack">
     <property name="geometry">
      <rect>
       <x>870</x>
@@ -798,7 +798,7 @@ border: 2px solid grey;
    <zorder>gridLayoutWidget</zorder>
    <zorder>listWiItemsShow</zorder>
    <zorder>helpLabel_2</zorder>
-   <zorder>textButton_5</zorder>
+   <zorder>bringToBack</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

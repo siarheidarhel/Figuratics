@@ -21,7 +21,7 @@
 
 
 
-//class MyTextClass;
+
 class MyScene : public QGraphicsScene
 {
 
@@ -30,6 +30,7 @@ class MyScene : public QGraphicsScene
 
 
     int figureType_=0;
+
     const QString warnMessage ={"No UNDO availible"};
 //    const QString warnTextMessage={"No Text object"};
     QPointF start_point;
@@ -39,7 +40,7 @@ class MyScene : public QGraphicsScene
     QStack<QGraphicsItem*> saveContainer_;
     QList<QGraphicsItemGroup*> savePancil;
     QGraphicsItemGroup myGroup;
-   // QStack<QGraphicsTextItem*> textContainer;
+
 
     QColorDialog colourDialog;
    QFont myFont;
@@ -50,18 +51,16 @@ class MyScene : public QGraphicsScene
 
     int myAt=0;
 
-    int myChangeZValue=1;
-    int myStrartZValue=1;
+    int myChangeZValue=0;
+    int myStrartZValue=0;
 
 
     QString fileName = "testMyfile.png";
-//    QListWidget *myListWiget;
-//    QWidget *myTempWidget;
+
 
 
 
     QGraphicsItem *figure=nullptr;
-    //QGraphicsItem *tempItem=nullptr;
 
 
 

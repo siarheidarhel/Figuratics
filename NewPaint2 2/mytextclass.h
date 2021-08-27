@@ -25,7 +25,8 @@ class MyTextClass : public QGraphicsTextItem
 public:
      MyTextClass( QGraphicsItem *parent=nullptr);
      virtual ~MyTextClass()=default;
-     void setTextColor (QColor myTextColour);
+
+     //void setTextColor (QColor myTextColour);
 
 
 
