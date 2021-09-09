@@ -35,7 +35,7 @@ void MyScene::mousePressEvent(QGraphicsSceneMouseEvent *event) {
     start_point = event->scenePos();
 
     switch (figureType_) {
-        // case Line| Circle| Rectangle | Triangle| Pencil | Points: break;
+
       case Text:
         myText = new MyTextClass();
         myText->setTextInteractionFlags(Qt::TextEditorInteraction);
@@ -160,7 +160,7 @@ void MyScene::keyPressEvent(QKeyEvent *event) {
   if (figureType_ == Text) {
     event->text();
     qDebug() << "Text Input"
-             << ":" << event->text(); /*QGraphicsScene::keyPressEvent(event);*/
+             << ":" << event->text();
   }
 
   if (event->key() == Qt::Key_Up) {
@@ -196,7 +196,7 @@ void MyScene::keyPressEvent(QKeyEvent *event) {
         this->clearSelection();
 
         items().at(myAt)->setSelected(true);
-        // figure=saveContainer_.at(myAt);
+
 
         qDebug() << "--" << myAt << " <-->" << items().count();
       }
@@ -349,10 +349,9 @@ void MyScene::drawPencile() {
   figure = addLine(start_point.rx(), start_point.ry(), end_point.x(),
                    end_point.y(), QPen(myPen));
   start_point = end_point;
-  // myGroup.addToGroup(figure);
+
   figure->setOpacity(myOpacity);
-  // figure->setFlags(QGraphicsItem::ItemIsFocusable|
-  // QGraphicsItem::ItemIsMovable|QGraphicsItem::ItemIsSelectable );
+
   figure->setFlag(QGraphicsItem::ItemIsSelectable, true);
 }
 
@@ -370,8 +369,7 @@ void MyScene::drawCircle() {
   figure->setRotation(myRotate);
   figure->setOpacity(myOpacity);
   figure->setZValue(myStrartZValue);
-  // figure->setFlag(QGraphicsItem::ItemIsFocusable,true);
-  // figure->setFlag(QGraphicsItem::ItemIsMovable,true);
+
   figure->setFlag(QGraphicsItem::ItemIsSelectable, true);
 }
 
@@ -491,7 +489,7 @@ void MyScene::editorLostFocus(MyTextClass *myText) {
 
   if (myText->toPlainText().isEmpty()) {
     this->removeItem(myText);
-    // myText->deleteLater();
+
     emit signalListWidget();
 
     update();
@@ -507,7 +505,7 @@ void MyScene::editorLostFocus(MyTextClass *myText) {
 
 void MyScene::rotationFigure(int rotate) {
   emit myRotate = rotate;
-  // if(saveContainer_.isEmpty()){return;}
+
 
   if (!this->items().isEmpty()) {
     if (this->selectedItems().isEmpty()) {

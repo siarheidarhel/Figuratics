@@ -21,15 +21,11 @@ MyTextClass::MyTextClass(QGraphicsItem *parent) : QGraphicsTextItem(parent) {
   this->setFocus(Qt::MouseFocusReason);
 }
 
-// void MyTextClass::setTextColor(QColor myTextColour)
-//{
-//     myColor=myTextColour;
-//}
 
 void MyTextClass::focusOutEvent(QFocusEvent *event) {
   this->setTextInteractionFlags(Qt::NoTextInteraction);
 
-  // this->clearFocus();
+
   emit lostFocus(this);
 
   QGraphicsTextItem::focusOutEvent(event);
@@ -44,11 +40,6 @@ void MyTextClass::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) {
   QGraphicsTextItem::mouseDoubleClickEvent(event);
 }
 
-// QRectF MyTextClass::boundingRect() const
-//{
-//     QRectF myRect= myTextItem->boundingRect();
-//    return myRect;
-//}
 
 void MyTextClass::focusInEvent(QFocusEvent *event) {
   qDebug() << Q_FUNC_INFO;

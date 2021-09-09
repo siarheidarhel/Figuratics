@@ -42,12 +42,8 @@ MainWindow::MainWindow(QWidget *parent)
   myPalleteBorders.setColor(QPalette::Window, QColor(Qt::black));
   ui->cubeColour_2->setPalette(myPalleteBorders);
 
-  // connect(scene, SIGNAL(myReset()), this,
-  // SLOT(resetRotation()));qDebug()<<"slot myReset-resetRotation";
-  connect(scene, SIGNAL(signalListWidget()), this, SLOT(onList()));
 
-  // ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-  // ui->graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+  connect(scene, SIGNAL(signalListWidget()), this, SLOT(onList()));
 }
 
 MainWindow::~MainWindow() {
@@ -245,14 +241,9 @@ void MainWindow::on_spinBox_2_valueChanged(int rotate) {
   this->setCursor(QCursor(Qt::ArrowCursor));
 
   scene->rotationFigure(rotate);
-  // connect(scene, SIGNAL(&MyScene::rotationFigure),
-  // this,SLOT(MainWindow::resetRotation()));qDebug()<<"slot";
-}
 
-// void MainWindow::resetRotation()
-//{
-//    ui->spinBox_2->setValue(0);
-//}
+
+}
 
 void MainWindow::on_doubleSpinBox_valueChanged(double figureOpacity) {
   scene->myOpacityFunc(figureOpacity);

@@ -1,55 +1,41 @@
 ﻿#ifndef MYTEXTCLASS_H
 #define MYTEXTCLASS_H
 
+#include <QGraphicsScene>
 #include <QGraphicsTextItem>
-#include<QMessageBox>
-#include<QGraphicsScene>
+#include <QMessageBox>
 
+class MyTextClass : public QGraphicsTextItem {
+  Q_OBJECT
 
-class MyTextClass : public QGraphicsTextItem
-{
-   Q_OBJECT
+  QList<QGraphicsTextItem *> textContainer;
+  QGraphicsTextItem *myTextItem;
+  QMessageBox *messBox;
 
-    QList<QGraphicsTextItem*> textContainer;
-    QGraphicsTextItem *myTextItem;
-    QMessageBox *messBox;
+  QColor myColor = Qt::red;
+  QFont myFont;
 
-    QColor myColor=Qt::red;
-    QFont myFont;
+  QPointF myPoint;
 
-    QPointF myPoint;
+  const QString warnTextMessage = {"No Text object"};
 
-    const QString warnTextMessage={"No Text object"};
+ public:
+  MyTextClass(QGraphicsItem *parent = nullptr);
+  virtual ~MyTextClass() = default;
 
+  // void setTextColor (QColor myTextColour);
 
-public:
-     MyTextClass( QGraphicsItem *parent=nullptr);
-     virtual ~MyTextClass()=default;
+ signals:
+  void lostFocus(MyTextClass *myText);
+  void selectedChange(QGraphicsItem *item);
 
-     //void setTextColor (QColor myTextColour);
-
-
-
-
-signals:
-    void lostFocus(MyTextClass *myText);
-    void selectedChange(QGraphicsItem *item);
-
-
-
-// QGraphicsItem interface
-protected:
-     QVariant itemChange(GraphicsItemChange change, const QVariant &value) override;
-     void focusOutEvent(QFocusEvent *event) override;
-     void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) override;
-     void focusInEvent(QFocusEvent *event) override;
-
-
-
-
-
+  // QGraphicsItem interface
+ protected:
+  QVariant itemChange(GraphicsItemChange change,
+                      const QVariant &value) override;
+  void focusOutEvent(QFocusEvent *event) override;
+  void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) override;
+  void focusInEvent(QFocusEvent *event) override;
 };
 
-
-
-#endif // MYTEXTCLASS_H
+#endif  // MYTEXTCLASS_H
