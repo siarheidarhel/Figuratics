@@ -21,7 +21,7 @@ class MyScene;
 class MyTextClass;
 class MainWindow : public QMainWindow {
   Q_OBJECT
-  QGraphicsTextItem *myTextItem = nullptr;
+  QGraphicsTextItem *myTextItem =  nullptr;
   QString windowTitle = {"Simple Painter"};
   QString inputText;
   QString myHelpMove = {
