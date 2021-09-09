@@ -123,7 +123,7 @@ int main(int argc, char **argv) {
   std::cout << "important colours : " << bmpInfoHeader.importantColors
             << std::endl;
 
-  std::ofstream file_out ("test.bmp");
+  std::ofstream file_out("test.bmp");
   file_out.seekp(0);
   file_out.write((char *)&bmpHeader, 14);
   file_out.write((char *)&bmpInfoHeader, 40);
@@ -145,6 +145,6 @@ int main(int argc, char **argv) {
     file_out.write((char *)&grey_scale, 1);
     file_out.write((char *)&grey_scale, 1);
   }
-    std::cout<<"Done!"<<std::endl;
+  std::cout << "Done!" << std::endl;
   return 0;
 }
