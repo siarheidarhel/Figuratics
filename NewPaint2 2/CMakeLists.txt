@@ -2,6 +2,10 @@ cmake_minimum_required(VERSION 3.5)
 
 project(NewPaint2 LANGUAGES CXX)
 
+
+
+
+
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 set(CMAKE_AUTOUIC ON)
@@ -45,8 +49,10 @@ set(PROJECT_SOURCES
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-    qt_add_executable(NewPaint2
-        ${PROJECT_SOURCES}
+#    qt_add_executable(NewPaint2
+#       ${PROJECT_SOURCES}
+          set(CUR_TARGET NewPaint2)
+           qt_add_executable(${CUR_TARGET} MACOSX_BUNDLE ${PROJECT_SOURCES}
     )
 else()
     if(ANDROID)
@@ -54,10 +60,25 @@ else()
             ${PROJECT_SOURCES}
         )
     else()
-        add_executable(NewPaint2
-            ${PROJECT_SOURCES}
-        )
+       add_executable(NewPaint2
+          ${PROJECT_SOURCES}
+
+
+   )
     endif()
 endif()
 
 target_link_libraries(NewPaint2 PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+
+#set(CUR_TARGET NewPaint2)
+#add_executable(${CUR_TARGET} MACOSX_BUNDLE ${MY_SRC})
+#set_target_properties(${CUR_TARGET} PROPERTIES
+#    BUNDLE True
+#    MACOSX_BUNDLE_GUI_IDENTIFIER my.domain.style.identifier.${CUR_TARGET}
+#    MACOSX_BUNDLE_BUNDLE_NAME ${CUR_TARGET}
+#    MACOSX_BUNDLE_BUNDLE_VERSION "0.1"
+#    MACOSX_BUNDLE_SHORT_VERSION_STRING "0.1"
+#    MACOSX_BUNDLE_INFO_PLIST ${CMAKE_SOURCE_DIR}/cmake/customtemplate.plist.in
+#    )
+
+
