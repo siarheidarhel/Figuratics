@@ -18,5 +18,6 @@
         <file>Assets/remove.png</file>
         <file>Assets/triangle.png</file>
         <file>Assets/undo.png</file>
+        <file>Assets/iconfile.ico</file>
     </qresource>
 </RCC>
