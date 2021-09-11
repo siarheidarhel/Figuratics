@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.5)
 
 project(NewPaint2 LANGUAGES CXX)
+set(PROJECT_VERSION 0.0.1)
 
 
 
@@ -54,11 +55,11 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 #       ${PROJECT_SOURCES}
         set(CUR_TARGET NewPaint2)
 
-
              set(MACOSX_BUNDLE_ICON_FILE iconfile.icns)
              set(APP_ICON_MACOSX ${CMAKE_CURRENT_SOURCE_DIR}/Assets/iconfile.icns)
                 set_source_files_properties(${APP_ICON_MACOSX} PROPERTIES
                        MACOSX_PACKAGE_LOCATION "Resources")
+                   set(MACOSX_BUNDLE_BUNDLE_VERSION 0.0.1)
                    qt_add_executable(${CUR_TARGET} MACOSX_BUNDLE ${PROJECT_SOURCES} ${APP_ICON_MACOSX}
 
     )
