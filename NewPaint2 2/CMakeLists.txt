@@ -53,7 +53,14 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 #  qt_add_executable(NewPaint2
 #       ${PROJECT_SOURCES}
         set(CUR_TARGET NewPaint2)
-         qt_add_executable(${CUR_TARGET} MACOSX_BUNDLE ${PROJECT_SOURCES}
+
+
+             set(MACOSX_BUNDLE_ICON_FILE iconfile.icns)
+             set(APP_ICON_MACOSX ${CMAKE_CURRENT_SOURCE_DIR}/Assets/iconfile.icns)
+                set_source_files_properties(${APP_ICON_MACOSX} PROPERTIES
+                       MACOSX_PACKAGE_LOCATION "Resources")
+                   qt_add_executable(${CUR_TARGET} MACOSX_BUNDLE ${PROJECT_SOURCES} ${APP_ICON_MACOSX}
+
     )
 #)
 else()
