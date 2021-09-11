@@ -42,6 +42,7 @@ set(PROJECT_SOURCES
         figuretype.h
         mytextclass.cpp
         mytextclass.h
+        myresource.qrc
 
 
 
@@ -49,11 +50,12 @@ set(PROJECT_SOURCES
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-#    qt_add_executable(NewPaint2
+#  qt_add_executable(NewPaint2
 #       ${PROJECT_SOURCES}
-          set(CUR_TARGET NewPaint2)
-           qt_add_executable(${CUR_TARGET} MACOSX_BUNDLE ${PROJECT_SOURCES}
+        set(CUR_TARGET NewPaint2)
+         qt_add_executable(${CUR_TARGET} MACOSX_BUNDLE ${PROJECT_SOURCES}
     )
+#)
 else()
     if(ANDROID)
         add_library(NewPaint2 SHARED

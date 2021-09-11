@@ -74,7 +74,7 @@ border: 2px solid grey;
        </property>
        <property name="icon">
         <iconset resource="myresource.qrc">
-         <normaloff>:/new/icons/fileopen.png</normaloff>:/new/icons/fileopen.png</iconset>
+         <normaloff>:/Icons/Assets/fileopen.png</normaloff>:/Icons/Assets/fileopen.png</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -115,7 +115,7 @@ border: 2px solid grey;
        </property>
        <property name="icon">
         <iconset resource="myresource.qrc">
-         <normaloff>:/new/icons/filesave.png</normaloff>:/new/icons/filesave.png</iconset>
+         <normaloff>:/Icons/Assets/filesave.png</normaloff>:/Icons/Assets/filesave.png</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -276,7 +276,7 @@ border: 2px solid grey;
        </property>
        <property name="icon">
         <iconset resource="myresource.qrc">
-         <normaloff>:/new/icons/rectangle.png</normaloff>:/new/icons/rectangle.png</iconset>
+         <normaloff>:/Icons/Assets/rectangle.png</normaloff>:/Icons/Assets/rectangle.png</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -305,7 +305,7 @@ border: 2px solid grey;
        </property>
        <property name="icon">
         <iconset resource="myresource.qrc">
-         <normaloff>:/new/icons/undo.png</normaloff>:/new/icons/undo.png</iconset>
+         <normaloff>:/Icons/Assets/undo.png</normaloff>:/Icons/Assets/undo.png</iconset>
        </property>
        <property name="shortcut">
         <string>Ctrl+Z</string>
@@ -392,7 +392,7 @@ border: 2px solid grey;
        </property>
        <property name="icon">
         <iconset resource="myresource.qrc">
-         <normaloff>:/new/icons/line copy.png</normaloff>:/new/icons/line copy.png</iconset>
+         <normaloff>:/Icons/Assets/line copy.png</normaloff>:/Icons/Assets/line copy.png</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -421,7 +421,7 @@ border: 2px solid grey;
        </property>
        <property name="icon">
         <iconset resource="myresource.qrc">
-         <normaloff>:/new/icons/circle.png</normaloff>:/new/icons/circle.png</iconset>
+         <normaloff>:/Icons/Assets/circle.png</normaloff>:/Icons/Assets/circle.png</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -463,7 +463,7 @@ border: 2px solid grey;
        </property>
        <property name="icon">
         <iconset resource="myresource.qrc">
-         <normaloff>:/new/icons/pencil copy.png</normaloff>:/new/icons/pencil copy.png</iconset>
+         <normaloff>:/Icons/Assets/pencil copy.png</normaloff>:/Icons/Assets/pencil copy.png</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -505,7 +505,7 @@ border: 2px solid grey;
        </property>
        <property name="icon">
         <iconset resource="myresource.qrc">
-         <normaloff>:/new/icons/triangle.png</normaloff>:/new/icons/triangle.png</iconset>
+         <normaloff>:/Icons/Assets/triangle.png</normaloff>:/Icons/Assets/triangle.png</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -723,7 +723,7 @@ border: 2px solid grey;
      <string>Bring back</string>
     </property>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>859</x>
@@ -796,8 +796,6 @@ border: 2px solid grey;
    <zorder>horizontalLayoutWidget_3</zorder>
    <zorder>layoutWidget</zorder>
    <zorder>gridLayoutWidget</zorder>
-   <zorder>listWiItemsShow</zorder>
-   <zorder>helpLabel_2</zorder>
    <zorder>bringToBack</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
