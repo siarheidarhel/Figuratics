@@ -22,7 +22,7 @@ class MyTextClass;
 class MainWindow : public QMainWindow {
   Q_OBJECT
   QGraphicsTextItem *myTextItem =  nullptr;
-  QString windowTitle = {"Simple Painter"};
+  QString windowTitle = {"Figuratics"};
   QString inputText;
   QString myHelpMove = {
       "USE \n <UP> AND <DOWN> \n KEYS TO NAVIGATE SELECTIONS"};

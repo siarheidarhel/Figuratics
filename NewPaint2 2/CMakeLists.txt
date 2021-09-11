@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(NewPaint2 LANGUAGES CXX)
+project(Figuratics LANGUAGES CXX)
 set(PROJECT_VERSION 0.0.1)
 
 
@@ -53,7 +53,7 @@ set(PROJECT_SOURCES
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 #  qt_add_executable(NewPaint2
 #       ${PROJECT_SOURCES}
-        set(CUR_TARGET NewPaint2)
+        set(CUR_TARGET Figuratics)
 
              set(MACOSX_BUNDLE_ICON_FILE iconfile.icns)
              set(APP_ICON_MACOSX ${CMAKE_CURRENT_SOURCE_DIR}/Assets/iconfile.icns)
@@ -66,11 +66,11 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 #)
 else()
     if(ANDROID)
-        add_library(NewPaint2 SHARED
+        add_library(Figuratics SHARED
             ${PROJECT_SOURCES}
         )
     else()
-       add_executable(NewPaint2
+       add_executable(Figuratics
           ${PROJECT_SOURCES}
 
 
@@ -78,7 +78,7 @@ else()
     endif()
 endif()
 
-target_link_libraries(NewPaint2 PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(Figuratics PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 
 
 
