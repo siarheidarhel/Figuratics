@@ -255,13 +255,13 @@ border: 2px solid grey;
      <rect>
       <x>10</x>
       <y>40</y>
-      <width>84</width>
+      <width>91</width>
       <height>581</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout">
-     <item row="0" column="0">
-      <widget class="QPushButton" name="rectButton">
+     <item row="5" column="0">
+      <widget class="QPushButton" name="fillColourButton">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
          <horstretch>0</horstretch>
@@ -269,14 +269,46 @@ border: 2px solid grey;
         </sizepolicy>
        </property>
        <property name="toolTip">
-        <string>Draw Rectangle</string>
+        <string>Fill figure with colour</string>
+       </property>
+       <property name="toolTipDuration">
+        <number>-1</number>
+       </property>
+       <property name="text">
+        <string>Fill</string>
+       </property>
+      </widget>
+     </item>
+     <item row="10" column="0">
+      <widget class="QPushButton" name="bringToFront">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>Bring front</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QPushButton" name="triangleButton">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Draw Triangle</string>
        </property>
        <property name="text">
         <string/>
        </property>
        <property name="icon">
         <iconset resource="myresource.qrc">
-         <normaloff>:/Icons/Assets/rectangle.png</normaloff>:/Icons/Assets/rectangle.png</iconset>
+         <normaloff>:/Icons/Assets/triangle.png</normaloff>:/Icons/Assets/triangle.png</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -284,36 +316,23 @@ border: 2px solid grey;
          <height>22</height>
         </size>
        </property>
-       <property name="shortcut">
-        <string>R</string>
-       </property>
       </widget>
      </item>
      <item row="12" column="0">
-      <widget class="QPushButton" name="undoButton">
+      <widget class="QPushButton" name="moveItemButton">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
-       <property name="toolTip">
-        <string>Undo</string>
-       </property>
        <property name="text">
-        <string/>
-       </property>
-       <property name="icon">
-        <iconset resource="myresource.qrc">
-         <normaloff>:/Icons/Assets/undo.png</normaloff>:/Icons/Assets/undo.png</iconset>
-       </property>
-       <property name="shortcut">
-        <string>Ctrl+Z</string>
+        <string>MOVE</string>
        </property>
       </widget>
      </item>
-     <item row="8" column="0">
-      <widget class="QPushButton" name="colourButton">
+     <item row="9" column="0">
+      <widget class="QPushButton" name="selectButton">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
          <horstretch>0</horstretch>
@@ -321,26 +340,10 @@ border: 2px solid grey;
         </sizepolicy>
        </property>
        <property name="toolTip">
-        <string>Set Colour of Lines</string>
+        <string>Select Item</string>
        </property>
        <property name="text">
-        <string>Colour</string>
-       </property>
-      </widget>
-     </item>
-     <item row="11" column="0">
-      <widget class="QPushButton" name="clearButton_5">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="toolTip">
-        <string>Clear the Scene</string>
-       </property>
-       <property name="text">
-        <string>CLEAR</string>
+        <string>Select</string>
        </property>
       </widget>
      </item>
@@ -360,8 +363,8 @@ border: 2px solid grey;
        </property>
       </widget>
      </item>
-     <item row="9" column="0">
-      <widget class="QPushButton" name="selectButton">
+     <item row="4" column="0">
+      <widget class="QPushButton" name="PencilButton">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
          <horstretch>0</horstretch>
@@ -369,10 +372,43 @@ border: 2px solid grey;
         </sizepolicy>
        </property>
        <property name="toolTip">
-        <string>Select Item</string>
+        <string>Draw using Pencil tool</string>
        </property>
        <property name="text">
-        <string>Select</string>
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="myresource.qrc">
+         <normaloff>:/Icons/Assets/pencil copy.png</normaloff>:/Icons/Assets/pencil copy.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item row="14" column="0">
+      <widget class="QPushButton" name="undoButton">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Undo</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="myresource.qrc">
+         <normaloff>:/Icons/Assets/undo.png</normaloff>:/Icons/Assets/undo.png</iconset>
+       </property>
+       <property name="shortcut">
+        <string>Ctrl+Z</string>
        </property>
       </widget>
      </item>
@@ -405,8 +441,8 @@ border: 2px solid grey;
        </property>
       </widget>
      </item>
-     <item row="1" column="0">
-      <widget class="QPushButton" name="circleButton">
+     <item row="13" column="0">
+      <widget class="QPushButton" name="clearButton_5">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
          <horstretch>0</horstretch>
@@ -414,14 +450,30 @@ border: 2px solid grey;
         </sizepolicy>
        </property>
        <property name="toolTip">
-        <string>Draw Circle</string>
+        <string>Clear the Scene</string>
+       </property>
+       <property name="text">
+        <string>CLEAR</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QPushButton" name="rectButton">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Draw Rectangle</string>
        </property>
        <property name="text">
         <string/>
        </property>
        <property name="icon">
         <iconset resource="myresource.qrc">
-         <normaloff>:/Icons/Assets/circle.png</normaloff>:/Icons/Assets/circle.png</iconset>
+         <normaloff>:/Icons/Assets/rectangle.png</normaloff>:/Icons/Assets/rectangle.png</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -430,46 +482,7 @@ border: 2px solid grey;
         </size>
        </property>
        <property name="shortcut">
-        <string>C</string>
-       </property>
-      </widget>
-     </item>
-     <item row="10" column="0">
-      <widget class="QPushButton" name="moveItemButton">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="text">
-        <string>MOVE</string>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="0">
-      <widget class="QPushButton" name="PencilButton">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="toolTip">
-        <string>Draw using Pencil tool</string>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="icon">
-        <iconset resource="myresource.qrc">
-         <normaloff>:/Icons/Assets/pencil copy.png</normaloff>:/Icons/Assets/pencil copy.png</iconset>
-       </property>
-       <property name="iconSize">
-        <size>
-         <width>32</width>
-         <height>32</height>
-        </size>
+        <string>R</string>
        </property>
       </widget>
      </item>
@@ -489,52 +502,7 @@ border: 2px solid grey;
        </property>
       </widget>
      </item>
-     <item row="2" column="0">
-      <widget class="QPushButton" name="triangleButton">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="toolTip">
-        <string>Draw Triangle</string>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="icon">
-        <iconset resource="myresource.qrc">
-         <normaloff>:/Icons/Assets/triangle.png</normaloff>:/Icons/Assets/triangle.png</iconset>
-       </property>
-       <property name="iconSize">
-        <size>
-         <width>22</width>
-         <height>22</height>
-        </size>
-       </property>
-      </widget>
-     </item>
-     <item row="5" column="0">
-      <widget class="QPushButton" name="fillColourButton">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="toolTip">
-        <string>Fill figure with colour</string>
-       </property>
-       <property name="toolTipDuration">
-        <number>-1</number>
-       </property>
-       <property name="text">
-        <string>Fill</string>
-       </property>
-      </widget>
-     </item>
-     <item row="13" column="0">
+     <item row="15" column="0">
       <widget class="QFrame" name="frame">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -623,13 +591,71 @@ border: 2px solid grey;
        </layout>
       </widget>
      </item>
+     <item row="8" column="0">
+      <widget class="QPushButton" name="colourButton">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Set Colour of Lines</string>
+       </property>
+       <property name="text">
+        <string>Colour</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QPushButton" name="circleButton">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Draw Circle</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="myresource.qrc">
+         <normaloff>:/Icons/Assets/circle.png</normaloff>:/Icons/Assets/circle.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>22</width>
+         <height>22</height>
+        </size>
+       </property>
+       <property name="shortcut">
+        <string>C</string>
+       </property>
+      </widget>
+     </item>
+     <item row="11" column="0">
+      <widget class="QPushButton" name="bringToBack">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>Bring back</string>
+       </property>
+      </widget>
+     </item>
     </layout>
    </widget>
    <widget class="QPushButton" name="textButton_6">
     <property name="geometry">
      <rect>
-      <x>1030</x>
-      <y>180</y>
+      <x>950</x>
+      <y>90</y>
       <width>77</width>
       <height>32</height>
      </rect>
@@ -644,30 +670,11 @@ border: 2px solid grey;
      <string>Zoom In</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="bringToFront">
-    <property name="geometry">
-     <rect>
-      <x>870</x>
-      <y>30</y>
-      <width>111</width>
-      <height>32</height>
-     </rect>
-    </property>
-    <property name="sizePolicy">
-     <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
-      <horstretch>0</horstretch>
-      <verstretch>0</verstretch>
-     </sizepolicy>
-    </property>
-    <property name="text">
-     <string>Bring front</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="textButton_4">
     <property name="geometry">
      <rect>
-      <x>930</x>
-      <y>180</y>
+      <x>950</x>
+      <y>60</y>
       <width>91</width>
       <height>32</height>
      </rect>
@@ -685,8 +692,8 @@ border: 2px solid grey;
    <widget class="QPushButton" name="eraseButton">
     <property name="geometry">
      <rect>
-      <x>980</x>
-      <y>150</y>
+      <x>950</x>
+      <y>30</y>
       <width>81</width>
       <height>32</height>
      </rect>
@@ -702,25 +709,6 @@ border: 2px solid grey;
     </property>
     <property name="shortcut">
      <string>E</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="bringToBack">
-    <property name="geometry">
-     <rect>
-      <x>870</x>
-      <y>70</y>
-      <width>111</width>
-      <height>32</height>
-     </rect>
-    </property>
-    <property name="sizePolicy">
-     <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
-      <horstretch>0</horstretch>
-      <verstretch>0</verstretch>
-     </sizepolicy>
-    </property>
-    <property name="text">
-     <string>Bring back</string>
     </property>
    </widget>
    <widget class="QWidget" name="layoutWidget">
@@ -787,8 +775,23 @@ border: 2px solid grey;
      </item>
     </layout>
    </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>890</x>
+      <y>10</y>
+      <width>221</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TOOLS ARE IN TESTING MODE</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
    <zorder>textButton_6</zorder>
-   <zorder>bringToFront</zorder>
    <zorder>textButton_4</zorder>
    <zorder>eraseButton</zorder>
    <zorder>layoutWidget</zorder>
@@ -796,7 +799,7 @@ border: 2px solid grey;
    <zorder>horizontalLayoutWidget_3</zorder>
    <zorder>layoutWidget</zorder>
    <zorder>gridLayoutWidget</zorder>
-   <zorder>bringToBack</zorder>
+   <zorder>label_4</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
