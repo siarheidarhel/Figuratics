@@ -66,6 +66,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 
               set_target_properties(NewPaint2 PROPERTIES
                        OUTPUT_NAME "Figuratics")
+
+
 #)
 else()
     if(ANDROID)
